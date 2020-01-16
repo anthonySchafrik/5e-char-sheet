@@ -2,13 +2,15 @@ import React from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { connect } from 'react-redux';
-
-import { setSelectCharacter } from '../actions/characters';
+import { bindActionCreators } from 'redux';
+import { setSelectCharacter, deleteCharacter } from '../actions/characters';
 
 const CharacterList = props => {
-  const { chars = [], setSelectCharacter } = props;
+  const { chars = [], setSelectCharacter, deleteCharacter } = props;
 
   const handleSelectCharacter = char => () => setSelectCharacter(char);
+
+  const handleDeleteCharacter = id => () => deleteCharacter(id);
 
   const renderCharacterList = () => {
     return chars.map((char, i) => {
@@ -21,7 +23,12 @@ const CharacterList = props => {
             <Text>{level}</Text>
           </View>
 
-          <Ionicons name="md-close-circle-outline" size={24} color="black" />
+          <Ionicons
+            name="md-close-circle-outline"
+            size={24}
+            color="black"
+            onPress={handleDeleteCharacter(id)}
+          />
         </View>
       );
     });
@@ -54,4 +61,8 @@ const mapStateToProps = state => {
   return {};
 };
 
-export default connect(mapStateToProps, { setSelectCharacter })(CharacterList);
+const mapDispatchToProp = dispatch => {
+  return bindActionCreators({ setSelectCharacter, deleteCharacter }, dispatch);
+};
+
+export default connect(mapStateToProps, mapDispatchToProp)(CharacterList);
