@@ -2,9 +2,9 @@ import React from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 import { connect } from 'react-redux';
 
-import CharacterList from '../components/CharacterList';
-
 import { setSelectCharacter } from '../actions/characters';
+
+import CharacterList from '../components/CharacterList';
 import CreateCharacterButton from '../components/CreateCharacterButton';
 
 const CharacterSelectScreen = props => {

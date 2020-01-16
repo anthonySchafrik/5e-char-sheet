@@ -1,18 +1,26 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { connect } from 'react-redux';
+
+import { setSelectCharacter } from '../actions/characters';
 
 const CharacterList = props => {
-  const { chars = [] } = props;
+  const { chars = [], setSelectCharacter } = props;
+
+  const handleSelectCharacter = char => () => setSelectCharacter(char);
 
   const renderCharacterList = () => {
     return chars.map((char, i) => {
-      const { name, playerClass, level } = char;
+      const { name, playerClass, level, id } = char;
       return (
         <View style={styles.list} key={i}>
-          <Text>{name}</Text>
-          <Text>{playerClass}</Text>
-          <Text>{level}</Text>
+          <View style={styles.test}>
+            <Text onPress={handleSelectCharacter(char)}>{name}</Text>
+            <Text>{playerClass}</Text>
+            <Text>{level}</Text>
+          </View>
+
           <Ionicons name="md-close-circle-outline" size={24} color="black" />
         </View>
       );
@@ -34,7 +42,16 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     marginVertical: 5
+  },
+  test: {
+    width: '90%',
+    flexDirection: 'row',
+    justifyContent: 'space-evenly'
   }
 });
 
-export default CharacterList;
+const mapStateToProps = state => {
+  return {};
+};
+
+export default connect(mapStateToProps, { setSelectCharacter })(CharacterList);

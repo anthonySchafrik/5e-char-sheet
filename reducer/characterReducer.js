@@ -4,15 +4,15 @@ const initialState = {
   selectCharacter: {},
   createCharacter: {},
   characters: [
-    { name: 'Legolas', playerClass: 'rogue', level: '5' },
-    { name: 'Legolas', playerClass: 'rogue', level: '5' },
-    { name: 'Legolas', playerClass: 'rogue', level: '5' },
-    { name: 'Legolas', playerClass: 'rogue', level: '5' },
-    { name: 'Legolas', playerClass: 'rogue', level: '5' },
-    { name: 'Legolas', playerClass: 'rogue', level: '5' },
-    { name: 'Legolas', playerClass: 'rogue', level: '5' },
-    { name: 'Legolas', playerClass: 'rogue', level: '5' },
-    { name: 'Legolas', playerClass: 'rogue', level: '5' }
+    { id: 0, name: 'Legolas', playerClass: 'rogue', level: '5' },
+    { id: 1, name: 'Legolas', playerClass: 'rogue', level: '5' },
+    { id: 2, name: 'Legolas', playerClass: 'rogue', level: '5' },
+    { id: 3, name: 'Legolas', playerClass: 'rogue', level: '5' },
+    { id: 4, name: 'Legolas', playerClass: 'rogue', level: '5' },
+    { id: 5, name: 'Legolas', playerClass: 'rogue', level: '5' },
+    { id: 6, name: 'Legolas', playerClass: 'rogue', level: '5' },
+    { id: 7, name: 'Legolas', playerClass: 'rogue', level: '5' },
+    { id: 8, name: 'Legolas', playerClass: 'rogue', level: '5' }
   ]
 };
 
