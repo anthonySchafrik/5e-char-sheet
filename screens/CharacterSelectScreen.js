@@ -1,6 +1,7 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, StyleSheet, Image } from 'react-native';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import { setSelectCharacter } from '../actions/characters';
 
@@ -8,13 +9,13 @@ import CharacterList from '../components/CharacterList';
 import CreateCharacterButton from '../components/CreateCharacterButton';
 
 const CharacterSelectScreen = props => {
-  const { selectCharacter, setSelectCharacter, characters } = props;
+  const { selectCharacter, setSelectCharacter, characters, navigation } = props;
 
   return (
     <View style={styles.screen}>
       <Image source={require('../assets/sword-dice.jpg')} />
       <View style={styles.listContainer}>
-        <CharacterList chars={characters} />
+        <CharacterList navigation={navigation} chars={characters} />
       </View>
       <View>
         <CreateCharacterButton />
@@ -45,6 +46,11 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { setSelectCharacter })(
-  CharacterSelectScreen
-);
+const mapDispatchToProp = dispatch => {
+  return bindActionCreators({ setSelectCharacter }, dispatch);
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProp
+)(CharacterSelectScreen);

@@ -1,13 +1,15 @@
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 
-import LandingScreen from '../screens/LandingScreen';
+import CharacterScreen from '../screens/CharacterScreen';
 import CharacterSelectScreen from '../screens/CharacterSelectScreen';
+import LandingScreen from '../screens/LandingScreen';
 
 const Navigator = createStackNavigator(
   {
     Welcome: LandingScreen,
-    Character: CharacterSelectScreen
+    Characters: CharacterSelectScreen,
+    Character: CharacterScreen
   },
   {
     initialRouteName: 'Welcome',
