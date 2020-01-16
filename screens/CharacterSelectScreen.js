@@ -1,21 +1,24 @@
 import React from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
+import { View, Text, StyleSheet, Image } from 'react-native';
 import { connect } from 'react-redux';
 
+import CharacterList from '../components/CharacterList';
+
 import { setSelectCharacter } from '../actions/characters';
+import CreateCharacterButton from '../components/CreateCharacterButton';
 
 const CharacterSelectScreen = props => {
-  const { selectCharacter, setSelectCharacter } = props;
+  const { selectCharacter, setSelectCharacter, characters } = props;
 
   return (
     <View style={styles.screen}>
-      <Text>Home</Text>
-      <Button
-        title="next"
-        // onPress={() => {
-        //   props.navigation.navigate('');
-        // }}
-      />
+      <Image source={require('../assets/sword-dice.jpg')} />
+      <View style={styles.listContainer}>
+        <CharacterList chars={characters} />
+      </View>
+      <View>
+        <CreateCharacterButton />
+      </View>
     </View>
   );
 };
@@ -23,15 +26,22 @@ const CharacterSelectScreen = props => {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
+    flexDirection: 'column',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    backgroundColor: '#9C9C9C'
+  },
+  listContainer: {
+    height: 170,
+    justifyContent: 'center'
   }
 });
 
 const mapStateToProps = state => {
-  const { selectCharacter } = state.character;
+  const { selectCharacter, characters } = state.character;
   return {
-    selectCharacter
+    selectCharacter,
+    characters
   };
 };
 

@@ -1,19 +1,27 @@
 import React from 'react';
-import { View, Text, StyleSheet, Button, Image } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableNativeFeedback
+} from 'react-native';
 
 const LandingScreen = props => {
   return (
     <View style={styles.screen}>
       <Text style={styles.text}>5th Edition</Text>
       <Image source={require('../assets/logo.png')} resizeMode="cover" />
-      <Text
-        style={styles.text}
-        onPress={() => {
-          props.navigation.navigate('Character');
-        }}
-      >
-        Character Selection
-      </Text>
+      <TouchableNativeFeedback>
+        <Text
+          style={styles.text}
+          onPress={() => {
+            props.navigation.navigate('Character');
+          }}
+        >
+          Character Selection
+        </Text>
+      </TouchableNativeFeedback>
     </View>
   );
 };

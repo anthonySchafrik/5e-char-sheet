@@ -2,10 +2,21 @@ import { SELECT_CHARACTER } from '../actions/characters';
 
 const initialState = {
   selectCharacter: {},
-  createCharacter: {}
+  createCharacter: {},
+  characters: [
+    { name: 'Legolas', playerClass: 'rogue', level: '5' },
+    { name: 'Legolas', playerClass: 'rogue', level: '5' },
+    { name: 'Legolas', playerClass: 'rogue', level: '5' },
+    { name: 'Legolas', playerClass: 'rogue', level: '5' },
+    { name: 'Legolas', playerClass: 'rogue', level: '5' },
+    { name: 'Legolas', playerClass: 'rogue', level: '5' },
+    { name: 'Legolas', playerClass: 'rogue', level: '5' },
+    { name: 'Legolas', playerClass: 'rogue', level: '5' },
+    { name: 'Legolas', playerClass: 'rogue', level: '5' }
+  ]
 };
 
-const characterReducer = (state = initialState, action) => {
+const CharacterReducer = (state = initialState, action) => {
   const { type, payload } = action;
 
   switch (type) {
@@ -19,4 +30,4 @@ const characterReducer = (state = initialState, action) => {
   }
 };
 
-export default characterReducer;
+export default CharacterReducer;
