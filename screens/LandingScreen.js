@@ -9,7 +9,7 @@ const LandingScreen = props => {
       <Text
         style={styles.text}
         onPress={() => {
-          props.navigation.navigate('Home');
+          props.navigation.navigate('Character');
         }}
       >
         Character Selection
