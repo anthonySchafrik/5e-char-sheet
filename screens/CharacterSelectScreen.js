@@ -20,7 +20,7 @@ const CharacterSelectScreen = props => {
       </View>
 
       <View>
-        <CreateCharacterButton />
+        <CreateCharacterButton navigation={navigation} />
       </View>
     </View>
   );
