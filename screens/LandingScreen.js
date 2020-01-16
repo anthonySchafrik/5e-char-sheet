@@ -1,16 +1,19 @@
 import React from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
+import { View, Text, StyleSheet, Button, Image } from 'react-native';
 
 const LandingScreen = props => {
   return (
     <View style={styles.screen}>
-      <Text>LandingScreen</Text>
-      <Button
-        title="Home"
+      <Text style={styles.text}>5th Edition</Text>
+      <Image source={require('../assets/logo.png')} resizeMode="cover" />
+      <Text
+        style={styles.text}
         onPress={() => {
           props.navigation.navigate('Home');
         }}
-      />
+      >
+        Character Selection
+      </Text>
     </View>
   );
 };
@@ -18,8 +21,13 @@ const LandingScreen = props => {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    backgroundColor: 'black'
+  },
+  text: {
+    color: '#B6B6B6',
+    fontSize: 30
   }
 });
 
