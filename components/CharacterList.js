@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Alert } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -13,7 +13,16 @@ const CharacterList = props => {
     navigation.push('Character');
   };
 
-  const handleDeleteCharacter = id => () => deleteCharacter(id);
+  const handleDeleteCharacter = id => () => {
+    Alert.alert(
+      'Delete Character',
+      'This cannot be undone',
+      [{ text: 'No' }, { text: 'Yes', onPress: () => deleteCharacter(id) }],
+      {
+        cancelable: false
+      }
+    );
+  };
 
   const renderCharacterList = () => {
     return chars.map((char, i) => {
@@ -21,7 +30,7 @@ const CharacterList = props => {
 
       return (
         <View style={styles.list} key={i}>
-          <View style={styles.test}>
+          <View style={styles.innerContainer}>
             <Text onPress={handleSelectCharacter(char)}>{name}</Text>
             <Text>{playerClass}</Text>
             <Text>{level}</Text>
@@ -54,10 +63,10 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
     marginVertical: 5
   },
-  test: {
+  innerContainer: {
     width: '90%',
     flexDirection: 'row',
-    justifyContent: 'space-evenly'
+    justifyContent: 'space-around'
   }
 });
 
