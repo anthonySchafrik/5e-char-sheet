@@ -18,6 +18,7 @@ const CharacterList = props => {
   const renderCharacterList = () => {
     return chars.map((char, i) => {
       const { name, playerClass, level, id } = char;
+
       return (
         <View style={styles.list} key={i}>
           <View style={styles.test}>

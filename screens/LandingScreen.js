@@ -12,6 +12,7 @@ const LandingScreen = props => {
     <View style={styles.screen}>
       <Text style={styles.text}>5th Edition</Text>
       <Image source={require('../assets/logo.png')} resizeMode="cover" />
+
       <TouchableNativeFeedback>
         <Text
           style={styles.text}

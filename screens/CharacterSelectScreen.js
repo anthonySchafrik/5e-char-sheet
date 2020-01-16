@@ -14,9 +14,11 @@ const CharacterSelectScreen = props => {
   return (
     <View style={styles.screen}>
       <Image source={require('../assets/sword-dice.jpg')} />
+
       <View style={styles.listContainer}>
         <CharacterList navigation={navigation} chars={characters} />
       </View>
+
       <View>
         <CreateCharacterButton />
       </View>
