@@ -2,13 +2,13 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableNativeFeedback } from 'react-native';
 
 const CreateCharacterButton = props => {
-  const { navigation } = props;
+  const { navScreenPush } = props;
   return (
     <TouchableNativeFeedback>
       <View style={styles.container}>
         <Text
           style={styles.text}
-          onPress={() => navigation.push('Create Character')}
+          onPress={() => navScreenPush('Create Character')}
         >
           Create Character
         </Text>

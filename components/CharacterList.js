@@ -6,11 +6,16 @@ import { bindActionCreators } from 'redux';
 import { setSelectCharacter, deleteCharacter } from '../actions/characters';
 
 const CharacterList = props => {
-  const { chars = [], setSelectCharacter, deleteCharacter, navigation } = props;
+  const {
+    chars = [],
+    setSelectCharacter,
+    deleteCharacter,
+    navScreenPush
+  } = props;
 
   const handleSelectCharacter = char => () => {
     setSelectCharacter(char);
-    navigation.push('Character');
+    navScreenPush('Character');
   };
 
   const handleDeleteCharacter = id => () => {

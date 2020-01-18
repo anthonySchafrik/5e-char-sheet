@@ -11,16 +11,18 @@ import CreateCharacterButton from '../components/CreateCharacterButton';
 const CharacterSelectScreen = props => {
   const { selectCharacter, setSelectCharacter, characters, navigation } = props;
 
+  const navScreenPush = screen => navigation.push(screen);
+
   return (
     <View style={styles.screen}>
       <Image source={require('../assets/sword-dice.jpg')} />
 
       <View style={styles.listContainer}>
-        <CharacterList navigation={navigation} chars={characters} />
+        <CharacterList navScreenPush={navScreenPush} chars={characters} />
       </View>
 
       <View>
-        <CreateCharacterButton navigation={navigation} />
+        <CreateCharacterButton navScreenPush={navScreenPush} />
       </View>
     </View>
   );
