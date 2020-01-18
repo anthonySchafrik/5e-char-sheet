@@ -5,12 +5,13 @@ import { connect } from 'react-redux';
 
 import InputComponent from '../components/InputComponent';
 import Colors from '../Colors';
+import TextFields from '../components/TextFields';
 
 class CreateCharacterScreen extends Component {
   render = () => {
     return (
       <ScrollView style={styles.screen}>
-        <View>
+        <View style={styles.container}>
           <View style={styles.row}>
             <InputComponent label="Character Name" />
             <InputComponent label="Class" />
@@ -27,6 +28,15 @@ class CreateCharacterScreen extends Component {
             <InputComponent label="Skin" />
             <InputComponent label="Hair" />
           </View>
+
+          <TextFields label="Character Appearance" />
+          <TextFields label="Back Story" />
+          <TextFields label="Bonds" />
+          <TextFields label="Flaws" />
+          <TextFields label="Ideals" />
+          <TextFields label="Back Story" />
+          <TextFields label="Character Appearance" />
+          <TextFields label="Allies & Organizations" />
         </View>
       </ScrollView>
     );
@@ -45,6 +55,9 @@ const styles = StyleSheet.create({
   screen: {
     flex: 1,
     backgroundColor: Colors.backGround
+  },
+  container: {
+    alignItems: 'center'
   },
   row: {
     flexDirection: 'row',

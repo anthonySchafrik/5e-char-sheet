@@ -1,14 +1,27 @@
 import React from 'react';
-import { View, Text, ScrollView, StyleSheet } from 'react-native';
+import { View, Text, TextInput, StyleSheet } from 'react-native';
 
-const TextFields = props => {
+const TextFields = ({ label, name }) => {
   return (
-    <ScrollView>
-      <View>
-        <Text>TextFields</Text>
-      </View>
-    </ScrollView>
+    <View style={styles.container}>
+      <Text>{label}</Text>
+
+      <TextInput style={styles.textInput} multiline={true}></TextInput>
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    marginVertical: 15,
+    width: '85%',
+    alignItems: 'stretch'
+  },
+  textInput: {
+    borderColor: '#666666',
+    borderWidth: 1
+  }
+});
 
 export default TextFields;

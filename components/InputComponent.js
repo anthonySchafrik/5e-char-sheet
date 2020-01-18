@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, TextInput } from 'react-native';
 
+import Colors from '../Colors';
 const InputComponent = ({ label, name }) => {
   return (
     <View style={styles.container}>
@@ -16,9 +17,9 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   input: {
-    borderBottomColor: '#4E4E4E',
+    borderBottomColor: Colors.inputColor,
     borderBottomWidth: 1,
-    color: '#4E4E4E',
+    color: Colors.inputColor,
     width: '45%'
   }
 });
