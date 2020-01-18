@@ -7,6 +7,7 @@ import { setSelectCharacter } from '../actions/characters';
 
 import CharacterList from '../components/CharacterList';
 import CreateCharacterButton from '../components/CreateCharacterButton';
+import Colors from '../Colors';
 
 const CharacterSelectScreen = props => {
   const { selectCharacter, setSelectCharacter, characters, navigation } = props;
@@ -34,7 +35,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'space-around',
     alignItems: 'center',
-    backgroundColor: '#9C9C9C'
+    backgroundColor: Colors.backGround
   },
   listContainer: {
     height: 170,

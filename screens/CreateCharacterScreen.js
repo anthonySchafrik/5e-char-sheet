@@ -1,14 +1,34 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+
+import InputComponent from '../components/InputComponent';
+import Colors from '../Colors';
 
 class CreateCharacterScreen extends Component {
   render = () => {
     return (
-      <View style={styles.screen}>
-        <Text>This is the Create Character Screen class.</Text>
-      </View>
+      <ScrollView style={styles.screen}>
+        <View>
+          <View style={styles.row}>
+            <InputComponent label="Character Name" />
+            <InputComponent label="Class" />
+          </View>
+
+          <View style={styles.row}>
+            <InputComponent label="Age" />
+            <InputComponent label="Height" />
+            <InputComponent label="Weight" />
+          </View>
+
+          <View style={styles.row}>
+            <InputComponent label="Eyes" />
+            <InputComponent label="Skin" />
+            <InputComponent label="Hair" />
+          </View>
+        </View>
+      </ScrollView>
     );
   };
 }
@@ -24,8 +44,11 @@ const mapDispatchToProp = dispatch => {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
+    backgroundColor: Colors.backGround
+  },
+  row: {
+    flexDirection: 'row',
+    marginVertical: 10
   }
 });
 

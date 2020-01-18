@@ -6,12 +6,14 @@ import CharacterSelectScreen from '../screens/CharacterSelectScreen';
 import CreateCharacterScreen from '../screens/CreateCharacterScreen';
 import LandingScreen from '../screens/LandingScreen';
 
+const create = 'Create Character';
+
 const Navigator = createStackNavigator(
   {
     Welcome: LandingScreen,
     Characters: CharacterSelectScreen,
     Character: CharacterScreen,
-    'Create Character': CreateCharacterScreen
+    [create]: CreateCharacterScreen
   },
   {
     initialRouteName: 'Welcome',

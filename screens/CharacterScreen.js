@@ -3,6 +3,8 @@ import { View, StyleSheet, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import Colors from '../Colors';
+
 const CharacterScreen = props => {
   const { selectCharacter } = props;
 
@@ -19,7 +21,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'space-around',
     alignItems: 'center',
-    backgroundColor: '#9C9C9C'
+    backgroundColor: Colors.backGround
   }
 });
 
