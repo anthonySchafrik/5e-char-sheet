@@ -71,5 +71,6 @@ export default connect(
 )(CreateCharacterScreen);
 
 /* 
-need to make that jsx a arr then map over that
+need to make that jsx a arr then map over to make it look nicer
+
 */
