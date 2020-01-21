@@ -69,8 +69,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProp
 )(CreateCharacterScreen);
-
-/* 
-need to make that jsx a arr then map over to make it look nicer
-
-*/
