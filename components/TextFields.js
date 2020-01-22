@@ -5,8 +5,7 @@ const TextFields = ({ label, name }) => {
   return (
     <View style={styles.container}>
       <Text>{label}</Text>
-
-      <TextInput style={styles.textInput} multiline={true}></TextInput>
+      <TextInput style={styles.textInput} multiline={true} />
     </View>
   );
 };
@@ -15,8 +14,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginVertical: 15,
-    width: '85%',
-    alignItems: 'stretch'
+    width: '85%'
   },
   textInput: {
     borderColor: '#666666',

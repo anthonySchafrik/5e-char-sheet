@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import {
+  View,
+  StyleSheet,
+  ScrollView,
+  KeyboardAvoidingView
+} from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
@@ -16,32 +21,40 @@ class CreateCharacterScreen extends Component {
 
   render = () => {
     const { inputComponentBuilder, textFieldBuilder } = this;
+
     return (
-      <ScrollView style={styles.screen}>
-        <View style={styles.container}>
-          <View style={styles.row}>
-            {inputComponentBuilder(['Character Name', 'Class'])}
-          </View>
+      <KeyboardAvoidingView
+        behavior="padding"
+        keyboardVerticalOffset={80}
+        style={styles.screen}
+      >
+        <ScrollView>
+          <View style={styles.container}>
+            <View style={styles.row}>
+              {inputComponentBuilder(['Character Name', 'Class'])}
+            </View>
 
-          <View style={styles.row}>
-            {inputComponentBuilder(['Age', 'Height', 'Weight'])}
-          </View>
+            <View style={styles.row}>
+              {inputComponentBuilder(['Age', 'Height', 'Weight'])}
+            </View>
 
-          <View style={styles.row}>
-            {inputComponentBuilder(['Eyes', 'Skin', 'Hair'])}
+            <View style={styles.row}>
+              {inputComponentBuilder(['Eyes', 'Skin', 'Hair'])}
+            </View>
+            <View style={styles.column}>
+              {textFieldBuilder([
+                'Character Appearance',
+                'Back Story',
+                'Bonds',
+                'Flaws',
+                'Ideals',
+                'Back Story',
+                'Allies & Organizations'
+              ])}
+            </View>
           </View>
-
-          {textFieldBuilder([
-            'Character Appearance',
-            'Back Story',
-            'Bonds',
-            'Flaws',
-            'Ideals',
-            'Back Story',
-            'Allies & Organizations'
-          ])}
-        </View>
-      </ScrollView>
+        </ScrollView>
+      </KeyboardAvoidingView>
     );
   };
 }
@@ -65,6 +78,11 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     marginVertical: 10
+  },
+  column: {
+    flexDirection: 'column',
+    alignItems: 'center',
+    width: '100%'
   }
 });
 
