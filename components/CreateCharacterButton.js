@@ -1,6 +1,8 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableNativeFeedback } from 'react-native';
 
+import Colors from '../Colors';
+
 const CreateCharacterButton = props => {
   const { navScreenPush } = props;
   return (
@@ -19,7 +21,7 @@ const CreateCharacterButton = props => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#666666',
+    backgroundColor: Colors.underLine,
     justifyContent: 'center',
     alignItems: 'center',
     height: 40,

@@ -1,6 +1,8 @@
 import React from 'react';
 import { View, Text, TextInput, StyleSheet } from 'react-native';
 
+import Colors from '../Colors';
+
 const TextFields = ({ label, name }) => {
   return (
     <View style={styles.container}>
@@ -17,7 +19,7 @@ const styles = StyleSheet.create({
     width: '85%'
   },
   textInput: {
-    borderColor: '#666666',
+    borderColor: Colors.underLine,
     borderWidth: 1
   }
 });

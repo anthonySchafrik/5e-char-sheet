@@ -6,7 +6,15 @@ import { bindActionCreators } from 'redux';
 import Colors from '../Colors';
 
 const EquipmentComponent = props => {
-  const { selectCharacter } = props;
+  const buildRowContainer = labels =>
+    labels.map((label, i) => {
+      return (
+        <View key={i} style={styles.row}>
+          <Text>{label}</Text>
+          <TextInput style={styles.rowInput} multiline={true} />
+        </View>
+      );
+    });
 
   return (
     <View style={styles.screen}>
@@ -14,39 +22,14 @@ const EquipmentComponent = props => {
         <Text>Equipment</Text>
       </View>
       <View style={styles.container}>
-        {/* Start of left column */}
-        <View>
-          <View style={styles.row}>
-            <Text>CP</Text>
-            <TextInput style={styles.textInput} multiline={true} />
-          </View>
-          <View style={styles.row}>
-            <Text>SP</Text>
-            <TextInput style={styles.textInput} multiline={true} />
-          </View>
-          <View style={styles.row}>
-            <Text>EP</Text>
-            <TextInput style={styles.textInput} multiline={true} />
-          </View>
-          <View style={styles.row}>
-            <Text>GP</Text>
-            <TextInput style={styles.textInput} multiline={true} />
-          </View>
-          <View style={styles.row}>
-            <Text>PP</Text>
-            <TextInput style={styles.textInput} multiline={true} />
-          </View>
+        {/* left column */}
+        <View style={styles.rowContainer}>
+          {buildRowContainer(['CP', 'SP', 'EP', 'GP', 'PP'])}
         </View>
-        {/* end of left column */}
 
-        <View style={{ width: '75%' }}>
-          <TextInput
-            style={{
-              borderColor: '#666666',
-              borderBottomWidth: 1
-            }}
-            multiline={true}
-          />
+        {/* Right column */}
+        <View style={styles.inputContainer}>
+          <TextInput style={styles.textInput} multiline={true} />
         </View>
       </View>
     </View>
@@ -56,25 +39,36 @@ const EquipmentComponent = props => {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    width: '85%'
+    width: '85%',
+    paddingBottom: 15
   },
   container: {
     width: '100%',
-
-    borderColor: '#666666',
+    borderColor: Colors.underLine,
     borderWidth: 1,
     flexDirection: 'row',
     justifyContent: 'space-between'
   },
-  textInput: {
-    borderColor: '#666666',
+  rowInput: {
+    borderColor: Colors.underLine,
     borderBottomWidth: 1
+  },
+  rowContainer: {
+    paddingBottom: 5,
+    alignItems: 'center'
   },
   row: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     width: 60
+  },
+  inputContainer: {
+    width: '75%'
+  },
+  textInput: {
+    borderColor: Colors.underLine,
+    borderBottomWidth: 1
   }
 });
 
