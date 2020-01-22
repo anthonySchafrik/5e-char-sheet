@@ -3,40 +3,43 @@ import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import InputComponent from '../components/InputComponent';
 import Colors from '../Colors';
+import InputComponent from '../components/InputComponent';
 import TextFields from '../components/TextFields';
 
 class CreateCharacterScreen extends Component {
+  inputComponentBuilder = labels =>
+    labels.map((label, i) => <InputComponent label={label} key={i} />);
+
+  textFieldBuilder = labels =>
+    labels.map((label, i) => <TextFields label={label} key={i} />);
+
   render = () => {
+    const { inputComponentBuilder, textFieldBuilder } = this;
     return (
       <ScrollView style={styles.screen}>
         <View style={styles.container}>
           <View style={styles.row}>
-            <InputComponent label="Character Name" />
-            <InputComponent label="Class" />
+            {inputComponentBuilder(['Character Name', 'Class'])}
           </View>
 
           <View style={styles.row}>
-            <InputComponent label="Age" />
-            <InputComponent label="Height" />
-            <InputComponent label="Weight" />
+            {inputComponentBuilder(['Age', 'Height', 'Weight'])}
           </View>
 
           <View style={styles.row}>
-            <InputComponent label="Eyes" />
-            <InputComponent label="Skin" />
-            <InputComponent label="Hair" />
+            {inputComponentBuilder(['Eyes', 'Skin', 'Hair'])}
           </View>
 
-          <TextFields label="Character Appearance" />
-          <TextFields label="Back Story" />
-          <TextFields label="Bonds" />
-          <TextFields label="Flaws" />
-          <TextFields label="Ideals" />
-          <TextFields label="Back Story" />
-          <TextFields label="Character Appearance" />
-          <TextFields label="Allies & Organizations" />
+          {textFieldBuilder([
+            'Character Appearance',
+            'Back Story',
+            'Bonds',
+            'Flaws',
+            'Ideals',
+            'Back Story',
+            'Allies & Organizations'
+          ])}
         </View>
       </ScrollView>
     );
