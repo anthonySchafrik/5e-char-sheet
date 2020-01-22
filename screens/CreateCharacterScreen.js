@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 import Colors from '../Colors';
 import InputComponent from '../components/InputComponent';
 import TextFields from '../components/TextFields';
+import EquipmentComponent from '../components/EquipmentComponent';
 
 class CreateCharacterScreen extends Component {
   inputComponentBuilder = labels =>
@@ -49,8 +50,11 @@ class CreateCharacterScreen extends Component {
                 'Flaws',
                 'Ideals',
                 'Back Story',
-                'Allies & Organizations'
+                'Allies & Organizations',
+                'Treasure'
               ])}
+
+              <EquipmentComponent />
             </View>
           </View>
         </ScrollView>
