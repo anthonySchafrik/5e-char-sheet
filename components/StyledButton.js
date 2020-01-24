@@ -3,16 +3,13 @@ import { View, Text, StyleSheet, TouchableNativeFeedback } from 'react-native';
 
 import Colors from '../Colors';
 
-const CreateCharacterButton = props => {
-  const { navScreenPush } = props;
+const StyledButton = props => {
+  const { navScreenPush, text } = props;
   return (
     <TouchableNativeFeedback>
       <View style={styles.container}>
-        <Text
-          style={styles.text}
-          onPress={() => navScreenPush('Create Character')}
-        >
-          Create Character
+        <Text style={styles.text} onPress={() => navScreenPush(text)}>
+          {text}
         </Text>
       </View>
     </TouchableNativeFeedback>
@@ -33,4 +30,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default CreateCharacterButton;
+export default StyledButton;

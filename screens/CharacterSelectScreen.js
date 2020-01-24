@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux';
 import { setSelectCharacter } from '../actions/characters';
 
 import CharacterList from '../components/CharacterList';
-import CreateCharacterButton from '../components/CreateCharacterButton';
+import StyledButton from '../components/StyledButton';
 import Colors from '../Colors';
 
 const CharacterSelectScreen = props => {
@@ -23,7 +23,7 @@ const CharacterSelectScreen = props => {
       </View>
 
       <View>
-        <CreateCharacterButton navScreenPush={navScreenPush} />
+        <StyledButton navScreenPush={navScreenPush} text="Create Character" />
       </View>
     </View>
   );

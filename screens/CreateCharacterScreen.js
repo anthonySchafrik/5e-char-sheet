@@ -3,7 +3,8 @@ import {
   View,
   StyleSheet,
   ScrollView,
-  KeyboardAvoidingView
+  KeyboardAvoidingView,
+  Button
 } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -12,6 +13,7 @@ import Colors from '../Colors';
 import InputComponent from '../components/InputComponent';
 import TextFields from '../components/TextFields';
 import EquipmentComponent from '../components/EquipmentComponent';
+import StyledButton from '../components/StyledButton';
 
 class CreateCharacterScreen extends Component {
   inputComponentBuilder = labels =>
@@ -20,8 +22,14 @@ class CreateCharacterScreen extends Component {
   textFieldBuilder = labels =>
     labels.map((label, i) => <TextFields label={label} key={i} />);
 
+  navScreenPush = screen => {
+    const { navigation } = this.props;
+
+    navigation.push(screen);
+  };
+
   render = () => {
-    const { inputComponentBuilder, textFieldBuilder } = this;
+    const { inputComponentBuilder, textFieldBuilder, navScreenPush } = this;
 
     return (
       <KeyboardAvoidingView
@@ -57,6 +65,9 @@ class CreateCharacterScreen extends Component {
               <EquipmentComponent />
             </View>
           </View>
+          <View style={styles.buttonContainer}>
+            <StyledButton navScreenPush={navScreenPush} text="Stats" />
+          </View>
         </ScrollView>
       </KeyboardAvoidingView>
     );
@@ -77,7 +88,8 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.backGround
   },
   container: {
-    alignItems: 'center'
+    alignItems: 'center',
+    width: '100%'
   },
   row: {
     flexDirection: 'row',
@@ -87,6 +99,10 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
     width: '100%'
+  },
+  buttonContainer: {
+    alignItems: 'center',
+    paddingBottom: 15
   }
 });
 
