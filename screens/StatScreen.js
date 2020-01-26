@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 
 import Colors from '../Colors';
 import StatBox from '../components/StatBox';
+import StatRectangle from '../components/StatRectangle';
 
 class StatScreen extends Component {
   state = {};
@@ -28,15 +29,21 @@ class StatScreen extends Component {
         style={styles.screen}
       >
         <ScrollView>
-          <View>
-            {buildStatBoxes([
-              'Strength',
-              'Dexterity',
-              'Constitution',
-              'Intelligence',
-              'Wisdom',
-              'Charisma'
-            ])}
+          <View style={styles.container}>
+            <View>
+              {buildStatBoxes([
+                'Strength',
+                'Dexterity',
+                'Constitution',
+                'Intelligence',
+                'Wisdom',
+                'Charisma'
+              ])}
+            </View>
+            <View>
+              <StatRectangle text="Inspiration" outline="box" />
+              <StatRectangle text="Proficiency Bonus" outline="circle" />
+            </View>
           </View>
         </ScrollView>
       </KeyboardAvoidingView>
@@ -56,6 +63,11 @@ const styles = StyleSheet.create({
   screen: {
     flex: 1,
     backgroundColor: Colors.backGround
+  },
+  container: {
+    width: '90%',
+    flexDirection: 'row',
+    justifyContent: 'space-between'
   }
 });
 

@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  TextInput,
-  KeyboardAvoidingView
-} from 'react-native';
+import { View, Text, StyleSheet, TextInput } from 'react-native';
 
 import Colors from '../Colors';
 
@@ -15,7 +9,11 @@ const StatBox = ({ text, handler }) => {
       <Text style={styles.styledText}>{text}</Text>
       <TextInput placeholder="Mult" placeholderTextColor="black" />
       <View style={styles.circleOutLine}>
-        <TextInput placeholder="stat" placeholderTextColor="black" />
+        <TextInput
+          style={{ paddingLeft: 5 }}
+          placeholder="stat"
+          placeholderTextColor="black"
+        />
       </View>
     </View>
   );
