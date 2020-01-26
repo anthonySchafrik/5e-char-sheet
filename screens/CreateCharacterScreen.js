@@ -110,3 +110,7 @@ export default connect(
   mapStateToProps,
   mapDispatchToProp
 )(CreateCharacterScreen);
+
+/* 
+  Stats button does not work some times
+*/

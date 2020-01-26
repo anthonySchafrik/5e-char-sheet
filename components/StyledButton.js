@@ -3,8 +3,7 @@ import { View, Text, StyleSheet, TouchableNativeFeedback } from 'react-native';
 
 import Colors from '../Colors';
 
-const StyledButton = props => {
-  const { navScreenPush, text } = props;
+const StyledButton = ({ navScreenPush, text }) => {
   return (
     <TouchableNativeFeedback>
       <View style={styles.container}>

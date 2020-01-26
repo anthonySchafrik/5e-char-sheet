@@ -4,10 +4,17 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import Colors from '../Colors';
+import StatBox from '../components/StatBox';
 
 class StatScreen extends Component {
   state = {};
+
+  buildStatBoxes = statTexts =>
+    statTexts.map((stat, i) => <StatBox key={i} text={stat} />);
+
   render = () => {
+    const { buildStatBoxes } = this;
+
     return (
       <KeyboardAvoidingView
         behavior="padding"
@@ -15,7 +22,14 @@ class StatScreen extends Component {
         style={styles.screen}
       >
         <View>
-          <Text>StatScreen</Text>
+          {buildStatBoxes([
+            'Strength',
+            'Dexterity',
+            'Constitution',
+            'Intelligence',
+            'Wisdom',
+            'Charisma'
+          ])}
         </View>
       </KeyboardAvoidingView>
     );
