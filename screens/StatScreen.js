@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, KeyboardAvoidingView, Text } from 'react-native';
+import {
+  View,
+  StyleSheet,
+  KeyboardAvoidingView,
+  Text,
+  ScrollView
+} from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
@@ -21,16 +27,18 @@ class StatScreen extends Component {
         keyboardVerticalOffset={80}
         style={styles.screen}
       >
-        <View>
-          {buildStatBoxes([
-            'Strength',
-            'Dexterity',
-            'Constitution',
-            'Intelligence',
-            'Wisdom',
-            'Charisma'
-          ])}
-        </View>
+        <ScrollView>
+          <View>
+            {buildStatBoxes([
+              'Strength',
+              'Dexterity',
+              'Constitution',
+              'Intelligence',
+              'Wisdom',
+              'Charisma'
+            ])}
+          </View>
+        </ScrollView>
       </KeyboardAvoidingView>
     );
   };

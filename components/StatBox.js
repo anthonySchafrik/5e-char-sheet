@@ -11,11 +11,6 @@ import Colors from '../Colors';
 
 const StatBox = ({ text, handler }) => {
   return (
-    // <KeyboardAvoidingView
-    //   behavior="position"
-    //   keyboardVerticalOffset={80}
-    //   // style={{ flex: 1 }}
-    // >
     <View style={styles.container}>
       <Text style={styles.styledText}>{text}</Text>
       <TextInput placeholder="Mult" placeholderTextColor="black" />
@@ -23,7 +18,6 @@ const StatBox = ({ text, handler }) => {
         <TextInput placeholder="stat" placeholderTextColor="black" />
       </View>
     </View>
-    // </KeyboardAvoidingView>
   );
 };
 
