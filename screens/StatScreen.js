@@ -52,10 +52,3 @@ const styles = StyleSheet.create({
 });
 
 export default connect(mapStateToProps, mapDispatchToProp)(StatScreen);
-
-/* 
-  set up state
-  add handlers for each stat
-  build ui components 
-  cross fingers it works
-*/
