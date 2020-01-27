@@ -3,12 +3,12 @@ import { View, Text, StyleSheet, TextInput } from 'react-native';
 
 import Colors from '../Colors';
 
-const InputBox = ({ text, handler }) => {
+const InputBox = ({ text, handler, style }) => {
   return (
     <View style={styles.screen}>
       <View style={styles.container}>
         <TextInput
-          // style={{ paddingLeft: 5 }}
+          style={[style, styles.styledTextInput]}
           placeholder="stat"
           placeholderTextColor="black"
         />
@@ -27,7 +27,11 @@ const styles = StyleSheet.create({
     width: 80,
     backgroundColor: Colors.inputColor,
     marginVertical: 5,
-    alignItems: 'center'
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  styledTextInput: {
+    fontSize: 30
   }
 });
 

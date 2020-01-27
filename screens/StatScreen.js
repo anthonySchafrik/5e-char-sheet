@@ -25,7 +25,11 @@ class StatScreen extends Component {
     throwsText.map((text, i) => <SavingThrowRow key={i} text={text} />);
 
   buildInputBoxes = boxTexts =>
-    boxTexts.map((text, i) => <InputBox text={text} key={i} />);
+    boxTexts.map((x, i) => {
+      const { text, style } = x;
+
+      return <InputBox text={text} key={i} style={style} />;
+    });
 
   render = () => {
     const { buildStatBoxes, buildSavingThrowRows, buildInputBoxes } = this;
@@ -66,7 +70,11 @@ class StatScreen extends Component {
               </View>
 
               <View style={styles.boxRows}>
-                {buildInputBoxes(['Armor Class', 'Initiative', 'Speed'])}
+                {buildInputBoxes([
+                  { text: 'Armor Class', style: { paddingLeft: 15 } },
+                  { text: 'Initiative', style: {} },
+                  { text: 'Speed', style: {} }
+                ])}
               </View>
             </View>
           </View>
