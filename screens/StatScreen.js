@@ -4,7 +4,8 @@ import {
   StyleSheet,
   KeyboardAvoidingView,
   Text,
-  ScrollView
+  ScrollView,
+  TextInput
 } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -76,6 +77,25 @@ class StatScreen extends Component {
                   { text: 'Speed', style: {} }
                 ])}
               </View>
+
+              <View style={styles.hitRow}>
+                <View style={styles.row}>
+                  <Text>Hit Points Maximum</Text>
+                  <TextInput
+                    style={styles.styledTextInput}
+                    placeholder="Mult"
+                    placeholderTextColor="black"
+                  />
+                </View>
+                <View style={styles.row}>
+                  <Text>Hit Dice</Text>
+                  <TextInput
+                    style={styles.styledTextInput}
+                    placeholder="Mult"
+                    placeholderTextColor="black"
+                  />
+                </View>
+              </View>
             </View>
           </View>
         </ScrollView>
@@ -108,6 +128,20 @@ const styles = StyleSheet.create({
   boxRows: {
     flexDirection: 'row',
     justifyContent: 'space-between'
+  },
+  hitRow: {
+    backgroundColor: Colors.inputColor
+  },
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginVertical: 4,
+    paddingLeft: 5,
+    paddingRight: 5
+  },
+  styledTextInput: {
+    borderBottomColor: Colors.underLine,
+    borderBottomWidth: 1
   }
 });
 
