@@ -22,14 +22,13 @@ const SavingThrowRow = ({ text, handler }) => {
 
       <Col>
         <TextInput
-          style={{ paddingLeft: 6 }}
           placeholder="Mult"
           placeholderTextColor="black"
           style={styles.styledInput}
         />
       </Col>
 
-      <Col>
+      <Col style={{ alignItems: 'flex-end' }}>
         <Text>{text}</Text>
       </Col>
     </Grid>
@@ -38,11 +37,9 @@ const SavingThrowRow = ({ text, handler }) => {
 
 const styles = StyleSheet.create({
   container: {
-    // flexDirection: 'row',
-    // justifyContent: 'space-around',
     marginVertical: 5,
     paddingLeft: 5,
-    paddingRight: 5
+    paddingRight: 15
   },
   checkedCircle: {
     height: 25,
