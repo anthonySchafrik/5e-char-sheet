@@ -5,11 +5,9 @@ import Colors from '../Colors';
 
 const StyledButton = ({ navScreenPush, text }) => {
   return (
-    <TouchableNativeFeedback>
+    <TouchableNativeFeedback onPress={() => navScreenPush(text)}>
       <View style={styles.container}>
-        <Text style={styles.text} onPress={() => navScreenPush(text)}>
-          {text}
-        </Text>
+        <Text style={styles.text}>{text}</Text>
       </View>
     </TouchableNativeFeedback>
   );

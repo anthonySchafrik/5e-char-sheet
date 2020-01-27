@@ -8,31 +8,41 @@ const SavingThrowRow = ({ text, handler }) => {
   const [checked, handleChecked] = useState(false);
 
   return (
-    <View style={styles.container}>
-      <View
-        style={{
-          ...styles.checkedCircle,
-          backgroundColor: checked ? 'black' : Colors.underLine
-        }}
-      >
-        <Text onPress={() => handleChecked(!checked)} />
-      </View>
-      <TextInput
-        style={{ paddingLeft: 6 }}
-        placeholder="Mult"
-        placeholderTextColor="black"
-        style={styles.styledInput}
-      />
-      <Text>{text}</Text>
-    </View>
+    <Grid style={styles.container}>
+      <Col>
+        <View
+          style={{
+            ...styles.checkedCircle,
+            backgroundColor: checked ? 'black' : Colors.underLine
+          }}
+        >
+          <Text onPress={() => handleChecked(!checked)} />
+        </View>
+      </Col>
+
+      <Col>
+        <TextInput
+          style={{ paddingLeft: 6 }}
+          placeholder="Mult"
+          placeholderTextColor="black"
+          style={styles.styledInput}
+        />
+      </Col>
+
+      <Col>
+        <Text>{text}</Text>
+      </Col>
+    </Grid>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    marginVertical: 5
+    // flexDirection: 'row',
+    // justifyContent: 'space-around',
+    marginVertical: 5,
+    paddingLeft: 5,
+    paddingRight: 5
   },
   checkedCircle: {
     height: 25,
@@ -43,7 +53,8 @@ const styles = StyleSheet.create({
   },
   styledInput: {
     borderColor: Colors.underLine,
-    borderBottomWidth: 1
+    borderBottomWidth: 1,
+    width: '35%'
   }
 });
 
