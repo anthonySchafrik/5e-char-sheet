@@ -13,6 +13,7 @@ import Colors from '../Colors';
 import StatBox from '../components/StatBox';
 import StatRectangle from '../components/StatRectangle';
 import SavingThrowRow from '../components/SavingThrowRow';
+import InputBox from '../components/InputBox';
 
 class StatScreen extends Component {
   state = {};
@@ -23,8 +24,11 @@ class StatScreen extends Component {
   buildSavingThrowRows = throwsText =>
     throwsText.map((text, i) => <SavingThrowRow key={i} text={text} />);
 
+  buildInputBoxes = boxTexts =>
+    boxTexts.map((text, i) => <InputBox text={text} key={i} />);
+
   render = () => {
-    const { buildStatBoxes, buildSavingThrowRows } = this;
+    const { buildStatBoxes, buildSavingThrowRows, buildInputBoxes } = this;
 
     return (
       <KeyboardAvoidingView
@@ -58,6 +62,11 @@ class StatScreen extends Component {
                   'Wisdom',
                   'Charisma'
                 ])}
+                <Text style={{}}>Saving Throws</Text>
+              </View>
+
+              <View style={styles.boxRows}>
+                {buildInputBoxes(['Armor Class', 'Initiative', 'Speed'])}
               </View>
             </View>
           </View>
@@ -81,12 +90,16 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.backGround
   },
   container: {
-    width: '90%',
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    justifyContent: 'space-around'
   },
   savingRow: {
-    backgroundColor: Colors.inputColor
+    backgroundColor: Colors.inputColor,
+    alignItems: 'center'
+  },
+  boxRows: {
+    flexDirection: 'row',
+    justifyContent: 'space-between'
   }
 });
 
