@@ -12,6 +12,7 @@ import { connect } from 'react-redux';
 import Colors from '../Colors';
 import StatBox from '../components/StatBox';
 import StatRectangle from '../components/StatRectangle';
+import SavingThrowRow from '../components/SavingThrowRow';
 
 class StatScreen extends Component {
   state = {};
@@ -19,8 +20,11 @@ class StatScreen extends Component {
   buildStatBoxes = statTexts =>
     statTexts.map((stat, i) => <StatBox key={i} text={stat} />);
 
+  buildSavingThrowRows = throwsText =>
+    throwsText.map((text, i) => <SavingThrowRow key={i} text={text} />);
+
   render = () => {
-    const { buildStatBoxes } = this;
+    const { buildStatBoxes, buildSavingThrowRows } = this;
 
     return (
       <KeyboardAvoidingView
@@ -40,9 +44,21 @@ class StatScreen extends Component {
                 'Charisma'
               ])}
             </View>
+
             <View>
               <StatRectangle text="Inspiration" outline="box" />
               <StatRectangle text="Proficiency Bonus" outline="circle" />
+
+              <View style={styles.savingRow}>
+                {buildSavingThrowRows([
+                  'Strength',
+                  'Dexterity',
+                  'Constitution',
+                  'Intelligence',
+                  'Wisdom',
+                  'Charisma'
+                ])}
+              </View>
             </View>
           </View>
         </ScrollView>
@@ -68,6 +84,9 @@ const styles = StyleSheet.create({
     width: '90%',
     flexDirection: 'row',
     justifyContent: 'space-between'
+  },
+  savingRow: {
+    backgroundColor: Colors.inputColor
   }
 });
 

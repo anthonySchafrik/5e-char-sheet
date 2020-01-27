@@ -11,7 +11,6 @@ const StatRectangle = ({ text, handler, outline }) => {
           style={{ paddingLeft: 6 }}
           placeholder="Mult"
           placeholderTextColor="black"
-          value="+ 3"
         />
       </View>
       <Text>{text}</Text>
