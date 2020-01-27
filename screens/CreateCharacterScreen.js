@@ -3,8 +3,7 @@ import {
   View,
   StyleSheet,
   ScrollView,
-  KeyboardAvoidingView,
-  Button
+  KeyboardAvoidingView
 } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -110,7 +109,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProp
 )(CreateCharacterScreen);
-
-/* 
-  Stats button does not work some times
-*/

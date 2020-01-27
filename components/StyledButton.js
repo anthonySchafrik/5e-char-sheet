@@ -3,10 +3,10 @@ import { View, Text, StyleSheet, TouchableNativeFeedback } from 'react-native';
 
 import Colors from '../Colors';
 
-const StyledButton = ({ navScreenPush, text }) => {
+const StyledButton = ({ navScreenPush, text, style }) => {
   return (
     <TouchableNativeFeedback onPress={() => navScreenPush(text)}>
-      <View style={styles.container}>
+      <View style={[styles.container, style]}>
         <Text style={styles.text}>{text}</Text>
       </View>
     </TouchableNativeFeedback>

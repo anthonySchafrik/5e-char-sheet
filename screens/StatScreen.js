@@ -15,6 +15,7 @@ import StatBox from '../components/StatBox';
 import StatRectangle from '../components/StatRectangle';
 import SavingThrowRow from '../components/SavingThrowRow';
 import InputBox from '../components/InputBox';
+import StyledButton from '../components/StyledButton';
 
 class StatScreen extends Component {
   state = {};
@@ -32,8 +33,19 @@ class StatScreen extends Component {
       return <InputBox text={text} key={i} style={style} />;
     });
 
+  navScreenPush = screen => {
+    const { navigation } = this.props;
+
+    navigation.push(screen);
+  };
+
   render = () => {
-    const { buildStatBoxes, buildSavingThrowRows, buildInputBoxes } = this;
+    const {
+      buildStatBoxes,
+      buildSavingThrowRows,
+      buildInputBoxes,
+      navScreenPush
+    } = this;
 
     return (
       <KeyboardAvoidingView
@@ -96,6 +108,12 @@ class StatScreen extends Component {
                   />
                 </View>
               </View>
+
+              <StyledButton
+                style={styles.styledButton}
+                navScreenPush={navScreenPush}
+                text="Skills"
+              />
             </View>
           </View>
         </ScrollView>
@@ -142,6 +160,10 @@ const styles = StyleSheet.create({
   styledTextInput: {
     borderBottomColor: Colors.underLine,
     borderBottomWidth: 1
+  },
+  styledButton: {
+    marginVertical: 90,
+    backgroundColor: Colors.inputColor
   }
 });
 
