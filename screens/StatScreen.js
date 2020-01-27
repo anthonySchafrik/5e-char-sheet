@@ -148,6 +148,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between'
   },
   hitRow: {
+    paddingTop: 5,
     backgroundColor: Colors.inputColor
   },
   row: {
