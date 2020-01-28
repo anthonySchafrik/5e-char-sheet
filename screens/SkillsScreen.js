@@ -93,7 +93,7 @@ const SkillsScreen = () => {
             <Button
               title="Add Attack"
               color={Colors.underLine}
-              onPress={() => setRowsToRender()}
+              onPress={setRowsToRender}
             />
           </View>
         </View>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, TextInput } from 'react-native';
+import { StyleSheet, TextInput, View } from 'react-native';
 import { Grid, Col } from 'react-native-easy-grid';
 
 import Colors from '../Colors';
@@ -7,27 +7,21 @@ const Attacks = () => {
   return (
     <Grid style={styles.screen}>
       <Col>
-        <TextInput
-          // style={styles.styledInput}
-          placeholder="Attack Name"
-          placeholderTextColor="black"
-        />
+        <View style={styles.colContainer}>
+          <TextInput placeholder="Attack Name" placeholderTextColor="black" />
+        </View>
       </Col>
 
       <Col>
-        <TextInput
-          // style={styles.styledInput}
-          placeholder="Bonus"
-          placeholderTextColor="black"
-        />
+        <View style={styles.colContainer}>
+          <TextInput placeholder="Bonus" placeholderTextColor="black" />
+        </View>
       </Col>
 
       <Col>
-        <TextInput
-          // style={styles.styledInput}
-          placeholder="Damage"
-          placeholderTextColor="black"
-        />
+        <View style={styles.colContainer}>
+          <TextInput placeholder="Damage" placeholderTextColor="black" />
+        </View>
       </Col>
     </Grid>
   );
@@ -36,6 +30,11 @@ const Attacks = () => {
 const styles = StyleSheet.create({
   screen: {
     flex: 1
+  },
+  colContainer: {
+    borderBottomWidth: 1,
+    width: '90%',
+    borderColor: Colors.underLine
   },
   styledInput: {
     borderBottomWidth: 1,
