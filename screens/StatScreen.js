@@ -148,13 +148,13 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between'
   },
   hitRow: {
-    paddingTop: 5,
+    paddingTop: 3,
     backgroundColor: Colors.inputColor
   },
   row: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginVertical: 4,
+    marginVertical: 3,
     paddingLeft: 5,
     paddingRight: 5
   },
@@ -163,7 +163,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1
   },
   styledButton: {
-    marginVertical: 90,
+    marginTop: 90,
     backgroundColor: Colors.inputColor
   }
 });
