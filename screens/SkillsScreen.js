@@ -12,10 +12,10 @@ import { Grid, Col } from 'react-native-easy-grid';
 
 import Attacks from '../components/Attacks';
 import SkillRow from '../components/SkillRow';
-
+import StyledButton from '../components/StyledButton';
 import Colors from '../Colors.js';
 
-const SkillsScreen = () => {
+const SkillsScreen = ({ navigation }) => {
   const [rowsToRender, handleRowRender] = useState([]);
 
   const skillRowBuilder = skills =>
@@ -29,6 +29,8 @@ const SkillsScreen = () => {
   };
 
   const attackRowRender = () => rowsToRender.map(x => <Attacks key={x} />);
+
+  const navScreenPush = screen => navigation.navigate(screen);
 
   return (
     <KeyboardAvoidingView
@@ -89,11 +91,21 @@ const SkillsScreen = () => {
             </ScrollView>
           </View>
 
-          <View style={styles.styledButton}>
-            <Button
-              title="Add Attack"
-              color={Colors.underLine}
-              onPress={setRowsToRender}
+          <View style={styles.buttonContainer}>
+            <View style={styles.styledButton}>
+              <Text style={{ color: 'white', fontSize: 13 }}>
+                Create Character
+              </Text>
+            </View>
+            <View style={styles.styledButton}>
+              <Text onPress={setRowsToRender} style={{ color: 'white' }}>
+                Add Attack
+              </Text>
+            </View>
+            <StyledButton
+              style={{ width: 100 }}
+              text="Spell List"
+              navScreenPush={navScreenPush}
             />
           </View>
         </View>
@@ -131,7 +143,19 @@ const styles = StyleSheet.create({
     paddingLeft: 15
   },
   styledButton: {
-    marginTop: 5
+    height: 40,
+    width: 100,
+    borderRadius: 10,
+    backgroundColor: Colors.underLine,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  buttonContainer: {
+    width: '100%',
+    marginTop: 5,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center'
   }
 });
 

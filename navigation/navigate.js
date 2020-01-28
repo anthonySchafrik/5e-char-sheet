@@ -6,10 +6,11 @@ import CharacterSelectScreen from '../screens/CharacterSelectScreen';
 import CreateCharacterScreen from '../screens/CreateCharacterScreen';
 import LandingScreen from '../screens/LandingScreen';
 import SkillsScreen from '../screens/SkillsScreen';
+import SpellListScreen from '../screens/SpellListScreen';
 import StatScreen from '../screens/StatScreen';
 
 const create = 'Create Character';
-
+const spell = 'Spell List';
 const Navigator = createStackNavigator(
   {
     Welcome: LandingScreen,
@@ -17,7 +18,8 @@ const Navigator = createStackNavigator(
     Character: CharacterScreen,
     [create]: CreateCharacterScreen,
     Stats: StatScreen,
-    Skills: SkillsScreen
+    Skills: SkillsScreen,
+    [spell]: SpellListScreen
   },
   {
     initialRouteName: 'Welcome',
