@@ -1,4 +1,8 @@
-import { SELECT_CHARACTER, DELETE_CHARACTER } from '../actions/characters';
+import {
+  SELECT_CHARACTER,
+  DELETE_CHARACTER,
+  UPDATE_CREATE_CHARACTER
+} from '../actions/characters';
 
 const initialState = {
   selectCharacter: {},
@@ -96,7 +100,7 @@ const initialState = {
 
 const CharacterReducer = (state = initialState, action) => {
   const { type, payload } = action;
-  const { characters } = state;
+  const { characters, createCharacter } = state;
 
   switch (type) {
     case SELECT_CHARACTER:
@@ -109,6 +113,13 @@ const CharacterReducer = (state = initialState, action) => {
       return {
         ...state,
         characters: characters.filter(char => char.id !== payload)
+      };
+
+    case UPDATE_CREATE_CHARACTER:
+      const { text, update } = payload;
+      return {
+        ...state,
+        createCharacter: { ...createCharacter, [text]: update }
       };
 
     default:

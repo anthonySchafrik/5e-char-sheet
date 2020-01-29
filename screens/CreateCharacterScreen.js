@@ -16,10 +16,10 @@ import StyledButton from '../components/StyledButton';
 
 class CreateCharacterScreen extends Component {
   inputComponentBuilder = labels =>
-    labels.map((label, i) => <InputComponent label={label} key={i} />);
+    labels.map((label, i) => <InputComponent text={label} key={i} />);
 
   textFieldBuilder = labels =>
-    labels.map((label, i) => <TextFields label={label} key={i} />);
+    labels.map((label, i) => <TextFields text={label} key={i} />);
 
   navScreenPush = screen => {
     const { navigation } = this.props;
@@ -72,14 +72,6 @@ class CreateCharacterScreen extends Component {
   };
 }
 
-const mapStateToProps = state => {
-  return {};
-};
-
-const mapDispatchToProp = dispatch => {
-  return bindActionCreators({}, dispatch);
-};
-
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
@@ -103,6 +95,15 @@ const styles = StyleSheet.create({
     paddingBottom: 15
   }
 });
+
+const mapStateToProps = state => {
+  const { createCharacter } = state.character;
+  return { createCharacter };
+};
+
+const mapDispatchToProp = dispatch => {
+  return bindActionCreators({}, dispatch);
+};
 
 export default connect(
   mapStateToProps,

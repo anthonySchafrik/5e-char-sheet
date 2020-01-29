@@ -1,13 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet } from 'react-native';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
+import { updateCreateCharacter } from '../actions/characters';
 import Colors from '../Colors';
 
-const TextFields = ({ label, name }) => {
+const TextFields = ({ text, updateCreateCharacter }) => {
+  const [update, handleUpdate] = useState('');
+
+  const handleCharacterUpdate = () =>
+    updateCreateCharacter({ text: text.toLowerCase(), update });
+
   return (
     <View style={styles.container}>
-      <Text>{label}</Text>
-      <TextInput style={styles.textInput} multiline={true} />
+      <Text>{text}</Text>
+      <TextInput
+        style={styles.textInput}
+        multiline={true}
+        onChangeText={text => handleUpdate(text)}
+        onEndEditing={handleCharacterUpdate}
+      />
     </View>
   );
 };
@@ -24,4 +37,12 @@ const styles = StyleSheet.create({
   }
 });
 
-export default TextFields;
+const mapStateToProps = state => {
+  return {};
+};
+
+const mapDispatchToProp = dispatch => {
+  return bindActionCreators({ updateCreateCharacter }, dispatch);
+};
+
+export default connect(mapStateToProps, mapDispatchToProp)(TextFields);
