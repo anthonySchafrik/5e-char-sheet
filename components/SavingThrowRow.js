@@ -1,11 +1,27 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput } from 'react-native';
-import { Col, Row, Grid } from 'react-native-easy-grid';
+import { Col, Grid } from 'react-native-easy-grid';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
+import { updateCreateCharacter } from '../actions/characters';
 import Colors from '../Colors';
 
-const SavingThrowRow = ({ text, handler }) => {
-  const [checked, handleChecked] = useState(false);
+const SavingThrowRow = ({ text, updateCreateCharacter, savingThrows }) => {
+  const [proficient, handleProficient] = useState(false);
+  const [updateMult, handleUpdateMult] = useState('');
+
+  const handleCharacterUpdate = () => {
+    const key = text.toLowerCase();
+
+    updateCreateCharacter({
+      text: 'savingThrows',
+      update: {
+        ...savingThrows,
+        [key]: { muli: updateMult, proficient }
+      }
+    });
+  };
 
   return (
     <Grid style={styles.container}>
@@ -13,10 +29,10 @@ const SavingThrowRow = ({ text, handler }) => {
         <View
           style={{
             ...styles.checkedCircle,
-            backgroundColor: checked ? 'black' : Colors.underLine
+            backgroundColor: proficient ? 'black' : Colors.underLine
           }}
         >
-          <Text onPress={() => handleChecked(!checked)} />
+          <Text onPress={() => handleProficient(!proficient)} />
         </View>
       </Col>
 
@@ -25,6 +41,8 @@ const SavingThrowRow = ({ text, handler }) => {
           placeholder="Mult"
           placeholderTextColor="black"
           style={styles.styledInput}
+          onChangeText={text => handleUpdateMult(text)}
+          onEndEditing={handleCharacterUpdate}
         />
       </Col>
 
@@ -55,4 +73,13 @@ const styles = StyleSheet.create({
   }
 });
 
-export default SavingThrowRow;
+const mapStateToProps = state => {
+  const { savingThrows } = state.character.createCharacter;
+  return { savingThrows };
+};
+
+const mapDispatchToProp = dispatch => {
+  return bindActionCreators({ updateCreateCharacter }, dispatch);
+};
+
+export default connect(mapStateToProps, mapDispatchToProp)(SavingThrowRow);

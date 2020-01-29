@@ -1,9 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput } from 'react-native';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import { updateCreateCharacter } from '../actions/characters';
 
 import Colors from '../Colors';
 
-const InputBox = ({ text, handler, style }) => {
+const InputBox = ({ text, updateCreateCharacter, style }) => {
+  const [update, handleUpdate] = useState('');
+
+  const handleCharacterUpdate = () =>
+    updateCreateCharacter({ text: text.toLowerCase(), update });
+
   return (
     <View style={styles.screen}>
       <View style={styles.container}>
@@ -11,6 +20,8 @@ const InputBox = ({ text, handler, style }) => {
           style={[style, styles.styledTextInput]}
           placeholder="stat"
           placeholderTextColor="black"
+          onChangeText={text => handleUpdate(text)}
+          onEndEditing={handleCharacterUpdate}
         />
       </View>
       <Text>{text}</Text>
@@ -35,4 +46,12 @@ const styles = StyleSheet.create({
   }
 });
 
-export default InputBox;
+const mapStateToProps = state => {
+  return {};
+};
+
+const mapDispatchToProp = dispatch => {
+  return bindActionCreators({ updateCreateCharacter }, dispatch);
+};
+
+export default connect(mapStateToProps, mapDispatchToProp)(InputBox);

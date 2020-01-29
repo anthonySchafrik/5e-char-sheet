@@ -4,11 +4,13 @@ import {
   Text,
   StyleSheet,
   ScrollView,
-  KeyboardAvoidingView,
-  Button,
-  TouchableOpacity
+  KeyboardAvoidingView
 } from 'react-native';
 import { Grid, Col } from 'react-native-easy-grid';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import { updateCreateCharacter } from '../actions/characters';
 
 import Attacks from '../components/Attacks';
 import SkillRow from '../components/SkillRow';
@@ -159,4 +161,13 @@ const styles = StyleSheet.create({
   }
 });
 
-export default SkillsScreen;
+const mapStateToProps = state => {
+  const { createCharacter } = state.character;
+  return { createCharacter };
+};
+
+const mapDispatchToProp = dispatch => {
+  return bindActionCreators({ updateCreateCharacter }, dispatch);
+};
+
+export default connect(mapStateToProps, mapDispatchToProp)(SkillsScreen);

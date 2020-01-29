@@ -10,6 +10,8 @@ import {
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
+import { updateCreateCharacter } from '../actions/characters';
+
 import Colors from '../Colors';
 import StatBox from '../components/StatBox';
 import StatRectangle from '../components/StatRectangle';
@@ -18,7 +20,19 @@ import InputBox from '../components/InputBox';
 import StyledButton from '../components/StyledButton';
 
 class StatScreen extends Component {
-  state = {};
+  state = { 'hit points maximum': '', 'hit dice': '' };
+
+  handleStateUpdate = (key, value) => {
+    this.setState({ [key]: value });
+  };
+
+  handleCharUpdate = key => () => {
+    const { updateCreateCharacter } = this.props;
+    const { state } = this;
+
+    const value = state[key];
+    updateCreateCharacter({ text: key, update: value });
+  };
 
   buildStatBoxes = statTexts =>
     statTexts.map((stat, i) => <StatBox key={i} text={stat} />);
@@ -44,10 +58,10 @@ class StatScreen extends Component {
       buildStatBoxes,
       buildSavingThrowRows,
       buildInputBoxes,
-      navScreenPush
+      navScreenPush,
+      handleStateUpdate,
+      handleCharUpdate
     } = this;
-
-    // console.log(this.props.createCharacter);
 
     return (
       <KeyboardAvoidingView
@@ -99,6 +113,10 @@ class StatScreen extends Component {
                     style={styles.styledTextInput}
                     placeholder="Mult"
                     placeholderTextColor="black"
+                    onChangeText={text =>
+                      handleStateUpdate('hit points maximum', text)
+                    }
+                    onEndEditing={handleCharUpdate('hit points maximum')}
                   />
                 </View>
                 <View style={styles.row}>
@@ -107,6 +125,8 @@ class StatScreen extends Component {
                     style={styles.styledTextInput}
                     placeholder="Mult"
                     placeholderTextColor="black"
+                    onChangeText={text => handleStateUpdate('hit dice', text)}
+                    onEndEditing={handleCharUpdate('hit dice')}
                   />
                 </View>
               </View>
@@ -168,7 +188,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProp = dispatch => {
-  return bindActionCreators({}, dispatch);
+  return bindActionCreators({ updateCreateCharacter }, dispatch);
 };
 
 export default connect(mapStateToProps, mapDispatchToProp)(StatScreen);

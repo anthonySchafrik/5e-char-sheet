@@ -1,13 +1,29 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput } from 'react-native';
-import { Col, Row, Grid } from 'react-native-easy-grid';
+import { Col, Grid } from 'react-native-easy-grid';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
+import { updateCreateCharacter } from '../actions/characters';
 import Colors from '../Colors';
 
-const SkillRow = ({ text, handler, subText }) => {
-  const [checked, handleChecked] = useState(false);
+const SkillRow = ({ text, updateCreateCharacter, subText, skills }) => {
+  const [proficient, handleProficient] = useState(false);
+  const [updateMult, handleUpdateMult] = useState('');
 
-  const setChecked = () => handleChecked(!checked);
+  const setProficient = () => handleProficient(!proficient);
+
+  const handleCharacterUpdate = () => {
+    const key = text.toLowerCase();
+
+    updateCreateCharacter({
+      text: 'skills',
+      update: {
+        ...skills,
+        [key]: { muli: updateMult, proficient }
+      }
+    });
+  };
 
   return (
     <View style={styles.container}>
@@ -16,10 +32,10 @@ const SkillRow = ({ text, handler, subText }) => {
           <View
             style={{
               ...styles.circle,
-              backgroundColor: checked ? 'black' : null
+              backgroundColor: proficient ? 'black' : null
             }}
           >
-            <Text onPress={setChecked} />
+            <Text onPress={setProficient} />
           </View>
         </Col>
         <Col size={9}>
@@ -27,6 +43,8 @@ const SkillRow = ({ text, handler, subText }) => {
             placeholder="Mult"
             placeholderTextColor="black"
             style={styles.styledTextInput}
+            onChangeText={text => handleUpdateMult(text)}
+            onEndEditing={handleCharacterUpdate}
           />
         </Col>
         <Col
@@ -67,4 +85,13 @@ const styles = StyleSheet.create({
   }
 });
 
-export default SkillRow;
+const mapStateToProps = state => {
+  const { skills } = state.character.createCharacter;
+  return { skills };
+};
+
+const mapDispatchToProp = dispatch => {
+  return bindActionCreators({ updateCreateCharacter }, dispatch);
+};
+
+export default connect(mapStateToProps, mapDispatchToProp)(SkillRow);
