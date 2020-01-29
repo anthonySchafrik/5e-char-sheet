@@ -72,18 +72,16 @@ const initialState = {
       'sleight of hand': { mult: '', proficient: false },
       survival: { mult: '', proficient: false }
     },
-    attacks: {
-      name: '',
-      bonus: '',
-      damage: ''
-    },
-    spells: {
-      class: '',
-      ability: '',
-      save: '',
-      bonus: '',
-      description: ''
-    }
+    attacks: [],
+    spells: [
+      {
+        class: '',
+        ability: '',
+        save: '',
+        bonus: '',
+        description: ''
+      }
+    ]
   },
   characters: [
     { id: 0, name: 'Legolas', playerClass: 'rogue', level: '5' },
