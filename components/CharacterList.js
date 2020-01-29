@@ -10,16 +10,14 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { setSelectCharacter, deleteCharacter } from '../actions/characters';
+import { setSelectCharacter } from '../actions/characters';
 
-const CharacterList = props => {
-  const {
-    chars = [],
-    setSelectCharacter,
-    deleteCharacter,
-    navScreenPush
-  } = props;
-
+const CharacterList = ({
+  chars = [],
+  setSelectCharacter,
+  navScreenPush,
+  fetchCharactersData
+}) => {
   const handleSelectCharacter = char => async () => {
     try {
       const value = await AsyncStorage.getItem(char);
@@ -33,11 +31,21 @@ const CharacterList = props => {
     }
   };
 
-  const handleDeleteCharacter = id => () => {
+  const deleteCharacter = async char => {
+    try {
+      await AsyncStorage.removeItem(char);
+
+      fetchCharactersData();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleDeleteCharacter = char => () => {
     Alert.alert(
       'Delete Character',
       'This cannot be undone',
-      [{ text: 'No' }, { text: 'Yes', onPress: () => deleteCharacter(id) }],
+      [{ text: 'No' }, { text: 'Yes', onPress: () => deleteCharacter(char) }],
       {
         cancelable: false
       }
@@ -56,7 +64,7 @@ const CharacterList = props => {
             name="md-close-circle-outline"
             size={24}
             color="black"
-            // onPress={handleDeleteCharacter(id)}
+            onPress={handleDeleteCharacter(char)}
           />
         </View>
       );
@@ -91,7 +99,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProp = dispatch => {
-  return bindActionCreators({ setSelectCharacter, deleteCharacter }, dispatch);
+  return bindActionCreators({ setSelectCharacter }, dispatch);
 };
 
 export default connect(mapStateToProps, mapDispatchToProp)(CharacterList);

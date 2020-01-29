@@ -35,7 +35,7 @@ class CharacterSelectScreen extends Component {
   };
 
   render = () => {
-    const { navScreenPush } = this;
+    const { navScreenPush, fetchCharactersData } = this;
     const { characters } = this.props;
 
     return (
@@ -43,7 +43,11 @@ class CharacterSelectScreen extends Component {
         <Image source={require('../assets/sword-dice.jpg')} />
 
         <View style={styles.listContainer}>
-          <CharacterList navScreenPush={navScreenPush} chars={characters} />
+          <CharacterList
+            fetchCharactersData={fetchCharactersData}
+            navScreenPush={navScreenPush}
+            chars={characters}
+          />
         </View>
 
         <View>
