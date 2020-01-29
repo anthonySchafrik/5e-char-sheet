@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
 import { View, StyleSheet, Image, AsyncStorage } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -9,20 +9,24 @@ import CharacterList from '../components/CharacterList';
 import StyledButton from '../components/StyledButton';
 import Colors from '../Colors';
 
-const CharacterSelectScreen = ({
-  selectCharacter,
-  setSelectCharacter,
-  characters,
-  navigation,
-  fetchCharacters
-}) => {
-  const navScreenPush = screen => navigation.push(screen);
+class CharacterSelectScreen extends Component {
+  componentDidMount = () => {
+    const { fetchCharactersData } = this;
 
-  const fetchCharactersData = async () => {
+    fetchCharactersData();
+  };
+
+  navScreenPush = screen => {
+    const { navigation } = this.props;
+
+    navigation.push(screen);
+  };
+
+  fetchCharactersData = async () => {
+    const { fetchCharacters } = this.props;
     try {
       const keys = await AsyncStorage.getAllKeys();
       if (keys !== null) {
-        console.log(keys);
         fetchCharacters(keys);
       }
     } catch (error) {
@@ -30,22 +34,25 @@ const CharacterSelectScreen = ({
     }
   };
 
-  // fetchCharactersData();
+  render = () => {
+    const { navScreenPush } = this;
+    const { characters } = this.props;
 
-  return (
-    <View style={styles.screen}>
-      <Image source={require('../assets/sword-dice.jpg')} />
+    return (
+      <View style={styles.screen}>
+        <Image source={require('../assets/sword-dice.jpg')} />
 
-      <View style={styles.listContainer}>
-        <CharacterList navScreenPush={navScreenPush} chars={characters} />
+        <View style={styles.listContainer}>
+          <CharacterList navScreenPush={navScreenPush} chars={characters} />
+        </View>
+
+        <View>
+          <StyledButton navScreenPush={navScreenPush} text="Create Character" />
+        </View>
       </View>
-
-      <View>
-        <StyledButton navScreenPush={navScreenPush} text="Create Character" />
-      </View>
-    </View>
-  );
-};
+    );
+  };
+}
 
 const styles = StyleSheet.create({
   screen: {

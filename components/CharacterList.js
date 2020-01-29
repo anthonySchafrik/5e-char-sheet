@@ -1,5 +1,12 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView, Alert } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  Alert,
+  AsyncStorage
+} from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -13,9 +20,17 @@ const CharacterList = props => {
     navScreenPush
   } = props;
 
-  const handleSelectCharacter = char => () => {
-    setSelectCharacter(char);
-    navScreenPush('Character');
+  const handleSelectCharacter = char => async () => {
+    try {
+      const value = await AsyncStorage.getItem(char);
+      if (value !== null) {
+        setSelectCharacter(JSON.parse(value));
+
+        navScreenPush('Character');
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleDeleteCharacter = id => () => {
@@ -31,19 +46,17 @@ const CharacterList = props => {
 
   const renderCharacterList = () => {
     return chars.map((char, i) => {
-      const { 'character name': name, id } = char;
-
       return (
         <View style={styles.list} key={i}>
           <View style={styles.innerContainer}>
-            <Text onPress={handleSelectCharacter(char)}>{name}</Text>
+            <Text onPress={handleSelectCharacter(char)}>{char}</Text>
           </View>
 
           <Ionicons
             name="md-close-circle-outline"
             size={24}
             color="black"
-            onPress={handleDeleteCharacter(id)}
+            // onPress={handleDeleteCharacter(id)}
           />
         </View>
       );
