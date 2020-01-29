@@ -16,11 +16,11 @@ const SpellListScreen = ({ createCharacter }) => {
   };
 
   const spellRowRender = () => rowsToRender.map(x => <Spell key={x} />);
-  console.log(createCharacter);
+
   return (
     <View style={styles.screen}>
       <View style={styles.spellContainer}>
-        <View style={{ height: 400, borderColor: 'black', borderWidth: 1 }}>
+        <View style={styles.spellInnerContainer}>
           <ScrollView>
             <Spell />
             {spellRowRender()}
@@ -30,13 +30,18 @@ const SpellListScreen = ({ createCharacter }) => {
 
       <View style={styles.buttonContainer}>
         <View style={styles.styledButton}>
-          <Text onPress={setRowsToRender} style={{ color: 'white' }}>
+          <Text onPress={setRowsToRender} style={styles.styledText}>
             Add Spell
           </Text>
         </View>
 
         <View style={styles.styledButton}>
-          <Text style={{ color: 'white' }}>Create Character</Text>
+          <Text
+            onPress={() => console.log(createCharacter)}
+            style={styles.styledText}
+          >
+            Create Character
+          </Text>
         </View>
       </View>
     </View>
@@ -63,7 +68,11 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'center'
   },
-  spellContainer: { height: 640 }
+  spellContainer: { height: 540 },
+  styledText: {
+    color: 'white'
+  },
+  spellInnerContainer: { height: 300, borderColor: 'black', borderWidth: 1 }
 });
 
 const mapStateToProps = state => {

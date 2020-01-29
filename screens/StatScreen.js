@@ -131,11 +131,13 @@ class StatScreen extends Component {
                 </View>
               </View>
 
-              <StyledButton
-                style={styles.styledButton}
-                navScreenPush={navScreenPush}
-                text="Skills"
-              />
+              <View style={{ paddingLeft: 25 }}>
+                <StyledButton
+                  style={styles.styledButton}
+                  navScreenPush={navScreenPush}
+                  text="Skills"
+                />
+              </View>
             </View>
           </View>
         </ScrollView>
@@ -177,7 +179,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1
   },
   styledButton: {
-    marginTop: 90,
+    marginTop: 30,
     backgroundColor: Colors.inputColor
   }
 });
