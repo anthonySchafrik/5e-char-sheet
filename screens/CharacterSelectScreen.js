@@ -1,18 +1,36 @@
-import React from 'react';
-import { View, StyleSheet, Image } from 'react-native';
+import React, { useState } from 'react';
+import { View, StyleSheet, Image, AsyncStorage } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { setSelectCharacter } from '../actions/characters';
+import { setSelectCharacter, fetchCharacters } from '../actions/characters';
 
 import CharacterList from '../components/CharacterList';
 import StyledButton from '../components/StyledButton';
 import Colors from '../Colors';
 
-const CharacterSelectScreen = props => {
-  const { selectCharacter, setSelectCharacter, characters, navigation } = props;
-
+const CharacterSelectScreen = ({
+  selectCharacter,
+  setSelectCharacter,
+  characters,
+  navigation,
+  fetchCharacters
+}) => {
   const navScreenPush = screen => navigation.push(screen);
+
+  const fetchCharactersData = async () => {
+    try {
+      const keys = await AsyncStorage.getAllKeys();
+      if (keys !== null) {
+        console.log(keys);
+        fetchCharacters(keys);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // fetchCharactersData();
 
   return (
     <View style={styles.screen}>
@@ -52,7 +70,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProp = dispatch => {
-  return bindActionCreators({ setSelectCharacter }, dispatch);
+  return bindActionCreators({ setSelectCharacter, fetchCharacters }, dispatch);
 };
 
 export default connect(

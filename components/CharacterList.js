@@ -31,14 +31,12 @@ const CharacterList = props => {
 
   const renderCharacterList = () => {
     return chars.map((char, i) => {
-      const { name, playerClass, level, id } = char;
+      const { 'character name': name, id } = char;
 
       return (
         <View style={styles.list} key={i}>
           <View style={styles.innerContainer}>
             <Text onPress={handleSelectCharacter(char)}>{name}</Text>
-            <Text>{playerClass}</Text>
-            <Text>{level}</Text>
           </View>
 
           <Ionicons

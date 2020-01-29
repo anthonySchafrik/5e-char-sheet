@@ -1,7 +1,8 @@
 import {
   SELECT_CHARACTER,
   DELETE_CHARACTER,
-  UPDATE_CREATE_CHARACTER
+  UPDATE_CREATE_CHARACTER,
+  FETCH_CHARACTERS
 } from '../actions/characters';
 
 const initialState = {
@@ -75,17 +76,7 @@ const initialState = {
     attacks: [],
     spells: []
   },
-  characters: [
-    { id: 0, name: 'Legolas', playerClass: 'rogue', level: '5' },
-    { id: 1, name: 'Legolas', playerClass: 'rogue', level: '5' },
-    { id: 2, name: 'Legolas', playerClass: 'rogue', level: '5' },
-    { id: 3, name: 'Legolas', playerClass: 'rogue', level: '5' },
-    { id: 4, name: 'Legolas', playerClass: 'rogue', level: '5' },
-    { id: 5, name: 'Legolas', playerClass: 'rogue', level: '5' },
-    { id: 6, name: 'Legolas', playerClass: 'rogue', level: '5' },
-    { id: 7, name: 'Legolas', playerClass: 'rogue', level: '5' },
-    { id: 8, name: 'Legolas', playerClass: 'rogue', level: '5' }
-  ]
+  characters: []
 };
 
 const CharacterReducer = (state = initialState, action) => {
@@ -110,6 +101,12 @@ const CharacterReducer = (state = initialState, action) => {
       return {
         ...state,
         createCharacter: { ...createCharacter, [text]: update }
+      };
+
+    case FETCH_CHARACTERS:
+      return {
+        ...state,
+        characters: payload
       };
 
     default:

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, AsyncStorage } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -8,8 +8,20 @@ import Spell from '../components/Spell';
 
 import Colors from '../Colors';
 
-const SpellListScreen = ({ createCharacter }) => {
+const SpellListScreen = ({ createCharacter, navigation }) => {
   const [rowsToRender, handleRowRender] = useState([]);
+
+  const storeData = async () => {
+    const name = createCharacter['character name'];
+
+    try {
+      await AsyncStorage.setItem(name, JSON.stringify(createCharacter));
+
+      navigation.replace('Characters');
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const setRowsToRender = () => {
     handleRowRender([...rowsToRender, rowsToRender.length]);
@@ -36,10 +48,7 @@ const SpellListScreen = ({ createCharacter }) => {
         </View>
 
         <View style={styles.styledButton}>
-          <Text
-            onPress={() => console.log(createCharacter)}
-            style={styles.styledText}
-          >
+          <Text onPress={storeData} style={styles.styledText}>
             Create Character
           </Text>
         </View>
