@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -10,7 +10,9 @@ const CharacterScreen = props => {
 
   return (
     <View style={styles.screen}>
-      <Text>{JSON.stringify(selectCharacter)}</Text>
+      <ScrollView>
+        <Text>{JSON.stringify(selectCharacter)}</Text>
+      </ScrollView>
     </View>
   );
 };

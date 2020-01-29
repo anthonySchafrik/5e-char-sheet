@@ -11,6 +11,7 @@ import StatScreen from '../screens/StatScreen';
 
 const create = 'Create Character';
 const spell = 'Spell List';
+
 const Navigator = createStackNavigator(
   {
     Welcome: LandingScreen,
