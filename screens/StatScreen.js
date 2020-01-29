@@ -79,7 +79,7 @@ class StatScreen extends Component {
                   'Wisdom',
                   'Charisma'
                 ])}
-                <Text style={{}}>Saving Throws</Text>
+                <Text>Saving Throws</Text>
               </View>
 
               <View style={styles.boxRows}>

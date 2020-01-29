@@ -56,7 +56,6 @@ class CreateCharacterScreen extends Component {
                 'Bonds',
                 'Flaws',
                 'Ideals',
-                'Back Story',
                 'Allies & Organizations',
                 'Treasure'
               ])}
