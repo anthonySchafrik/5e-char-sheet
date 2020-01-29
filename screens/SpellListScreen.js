@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
+import { updateCreateCharacter } from '../actions/characters';
 import Spell from '../components/Spell';
 
 import Colors from '../Colors';
 
-const SpellListScreen = () => {
+const SpellListScreen = ({ createCharacter }) => {
   const [rowsToRender, handleRowRender] = useState([]);
 
   const setRowsToRender = () => {
@@ -13,7 +16,7 @@ const SpellListScreen = () => {
   };
 
   const spellRowRender = () => rowsToRender.map(x => <Spell key={x} />);
-
+  console.log(createCharacter);
   return (
     <View style={styles.screen}>
       <View style={styles.spellContainer}>
@@ -63,4 +66,13 @@ const styles = StyleSheet.create({
   spellContainer: { height: 640 }
 });
 
-export default SpellListScreen;
+const mapStateToProps = state => {
+  const { createCharacter } = state.character;
+  return { createCharacter };
+};
+
+const mapDispatchToProp = dispatch => {
+  return bindActionCreators({ updateCreateCharacter }, dispatch);
+};
+
+export default connect(mapStateToProps, mapDispatchToProp)(SpellListScreen);

@@ -1,43 +1,98 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { View, Text, TextInput, StyleSheet } from 'react-native';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import { updateCreateCharacter } from '../actions/characters';
 
 import Colors from '../Colors';
 
-const Spell = () => {
-  return (
-    <View style={StyleSheet.container}>
-      <View style={styles.rowContainer}>
-        <View>
-          <Text>Spellcasting class</Text>
-          <TextInput style={styles.styledInput} />
-        </View>
-        <View>
-          <Text>Spellingcasting Ability</Text>
-          <TextInput style={styles.styledInput} />
-        </View>
-      </View>
+class Spell extends Component {
+  state = {
+    spellClass: '',
+    ability: '',
+    save: '',
+    bonus: '',
+    description: ''
+  };
 
-      <View style={styles.rowContainer}>
-        <View>
-          <Text>Spell Save DC</Text>
-          <TextInput style={styles.styledInput} />
-        </View>
-        <View>
-          <Text>Spell Attack Bonus</Text>
-          <TextInput style={styles.styledInput} />
-        </View>
-      </View>
+  stateUpdater = (key, value) => this.setState({ [key]: value });
 
-      <View style={styles.spellDescription}>
-        <Text>Spell Description</Text>
-        <TextInput
-          style={{ ...styles.styledInput, borderWidth: 1 }}
-          multiline={true}
-        />
+  handleCharacterUpdate = () => {
+    const { spells, updateCreateCharacter } = this.props;
+    const { spellClass, ability, save, bonus, description } = this.state;
+
+    if (
+      spellClass !== '' &&
+      bonus !== '' &&
+      ability !== '' &&
+      description !== '' &&
+      save !== ''
+    ) {
+      updateCreateCharacter({
+        text: 'spells',
+        update: [...spells, { spellClass, ability, save, bonus, description }]
+      });
+    }
+    return;
+  };
+
+  render = () => {
+    const { stateUpdater, handleCharacterUpdate } = this;
+
+    return (
+      <View style={StyleSheet.container}>
+        <View style={styles.rowContainer}>
+          <View>
+            <Text>Spellcasting class</Text>
+            <TextInput
+              style={styles.styledInput}
+              onChangeText={text => stateUpdater('spellClass', text)}
+              onEndEditing={handleCharacterUpdate}
+            />
+          </View>
+          <View>
+            <Text>Spellingcasting Ability</Text>
+            <TextInput
+              style={styles.styledInput}
+              onChangeText={text => stateUpdater('ability', text)}
+              onEndEditing={handleCharacterUpdate}
+            />
+          </View>
+        </View>
+
+        <View style={styles.rowContainer}>
+          <View>
+            <Text>Spell Save DC</Text>
+            <TextInput
+              style={styles.styledInput}
+              onChangeText={text => stateUpdater('save', text)}
+              onEndEditing={handleCharacterUpdate}
+            />
+          </View>
+          <View>
+            <Text>Spell Attack Bonus</Text>
+            <TextInput
+              style={styles.styledInput}
+              onChangeText={text => stateUpdater('bonus', text)}
+              onEndEditing={handleCharacterUpdate}
+            />
+          </View>
+        </View>
+
+        <View style={styles.spellDescription}>
+          <Text>Spell Description</Text>
+          <TextInput
+            style={{ ...styles.styledInput, borderWidth: 1 }}
+            multiline={true}
+            onChangeText={text => stateUpdater('description', text)}
+            onEndEditing={handleCharacterUpdate}
+          />
+        </View>
       </View>
-    </View>
-  );
-};
+    );
+  };
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -59,4 +114,13 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Spell;
+const mapStateToProps = state => {
+  const { spells } = state.character.createCharacter;
+  return { spells };
+};
+
+const mapDispatchToProp = dispatch => {
+  return bindActionCreators({ updateCreateCharacter }, dispatch);
+};
+
+export default connect(mapStateToProps, mapDispatchToProp)(Spell);

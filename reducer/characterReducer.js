@@ -73,15 +73,7 @@ const initialState = {
       survival: { mult: '', proficient: false }
     },
     attacks: [],
-    spells: [
-      {
-        class: '',
-        ability: '',
-        save: '',
-        bonus: '',
-        description: ''
-      }
-    ]
+    spells: []
   },
   characters: [
     { id: 0, name: 'Legolas', playerClass: 'rogue', level: '5' },
