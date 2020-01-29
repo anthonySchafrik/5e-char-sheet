@@ -1,18 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput } from 'react-native';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
+import { updateCreateCharacter } from '../actions/characters';
 import Colors from '../Colors';
 
-const StatBox = ({ text, handler }) => {
+const StatBox = ({ text, updateCreateCharacter, stats }) => {
+  const [updateMult, handleUpdateMult] = useState('');
+  const [updateStat, handleUpdateStat] = useState('');
+
+  const handleCharacterUpdate = () => {
+    const key = text.toLowerCase();
+
+    updateCreateCharacter({
+      text: 'stats',
+      update: { ...stats, [key]: { muli: updateMult, stat: updateStat } }
+    });
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.styledText}>{text}</Text>
-      <TextInput placeholder="Mult" placeholderTextColor="black" />
+      <TextInput
+        placeholder="Mult"
+        placeholderTextColor="black"
+        onChangeText={text => handleUpdateMult(text)}
+        onEndEditing={handleCharacterUpdate}
+      />
       <View style={styles.circleOutLine}>
         <TextInput
           style={{ paddingLeft: 5 }}
           placeholder="stat"
           placeholderTextColor="black"
+          onChangeText={text => handleUpdateStat(text)}
+          onEndEditing={handleCharacterUpdate}
         />
       </View>
     </View>
@@ -39,4 +61,13 @@ const styles = StyleSheet.create({
   }
 });
 
-export default StatBox;
+const mapStateToProps = state => {
+  const { stats } = state.character.createCharacter;
+  return { stats };
+};
+
+const mapDispatchToProp = dispatch => {
+  return bindActionCreators({ updateCreateCharacter }, dispatch);
+};
+
+export default connect(mapStateToProps, mapDispatchToProp)(StatBox);

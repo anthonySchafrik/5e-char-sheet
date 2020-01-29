@@ -47,6 +47,8 @@ class StatScreen extends Component {
       navScreenPush
     } = this;
 
+    // console.log(this.props.createCharacter);
+
     return (
       <KeyboardAvoidingView
         behavior="padding"
@@ -122,14 +124,6 @@ class StatScreen extends Component {
   };
 }
 
-const mapStateToProps = state => {
-  return {};
-};
-
-const mapDispatchToProp = dispatch => {
-  return bindActionCreators({}, dispatch);
-};
-
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
@@ -167,5 +161,14 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.inputColor
   }
 });
+
+const mapStateToProps = state => {
+  const { createCharacter } = state.character;
+  return { createCharacter };
+};
+
+const mapDispatchToProp = dispatch => {
+  return bindActionCreators({}, dispatch);
+};
 
 export default connect(mapStateToProps, mapDispatchToProp)(StatScreen);

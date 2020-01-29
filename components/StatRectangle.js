@@ -1,9 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput } from 'react-native';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
+import { updateCreateCharacter } from '../actions/characters';
 import Colors from '../Colors';
 
-const StatRectangle = ({ text, handler, outline }) => {
+const StatRectangle = ({ text, updateCreateCharacter, outline }) => {
+  const [update, handleUpdate] = useState('');
+
+  const handleCharacterUpdate = () =>
+    updateCreateCharacter({ text: text.toLowerCase(), update });
+
   return (
     <View style={styles.container}>
       <View style={styles[outline]}>
@@ -11,6 +19,8 @@ const StatRectangle = ({ text, handler, outline }) => {
           style={{ paddingLeft: 6 }}
           placeholder="Mult"
           placeholderTextColor="black"
+          onChangeText={text => handleUpdate(text)}
+          onEndEditing={handleCharacterUpdate}
         />
       </View>
       <Text>{text}</Text>
@@ -49,4 +59,12 @@ const styles = StyleSheet.create({
   }
 });
 
-export default StatRectangle;
+const mapStateToProps = state => {
+  return {};
+};
+
+const mapDispatchToProp = dispatch => {
+  return bindActionCreators({ updateCreateCharacter }, dispatch);
+};
+
+export default connect(mapStateToProps, mapDispatchToProp)(StatRectangle);
