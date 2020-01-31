@@ -1,9 +1,10 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, ImageBackground } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import Colors from '../../Colors';
+import { TextInput } from 'react-native-gesture-handler';
 
 const Stats = ({
   stats,
@@ -19,16 +20,48 @@ const Stats = ({
 }) => {
   return (
     <View style={styles.screen}>
-      <Text>{JSON.stringify({ stats })}</Text>
-      <Text>{JSON.stringify({ inspiration })}</Text>
-      <Text>{JSON.stringify({ proficiency })}</Text>
-      <Text>{JSON.stringify({ savingThrows })}</Text>
-      <Text>{JSON.stringify({ armorClass })}</Text>
-      <Text>{JSON.stringify({ initiative })}</Text>
-      <Text>{JSON.stringify({ speed })}</Text>
-      <Text>{JSON.stringify({ hp })}</Text>
-      <Text>{JSON.stringify({ hd })}</Text>
-      <Text>{JSON.stringify({ skills })}</Text>
+      {/*  */}
+      <View style={styles.box}>
+        <Text>HP</Text>
+        <TextInput value={hp} />
+      </View>
+      <View style={styles.squContainer}>
+        <View style={styles.row}>
+          <Text>Initiative</Text>
+          <TextInput value={initiative} />
+        </View>
+        <View style={styles.row}>
+          <Text>Speed</Text>
+          <TextInput value={speed} />
+        </View>
+      </View>
+
+      <View style={styles.midContainer}>
+        <View style={styles.centered}>
+          <Text>Hit Dice</Text>
+          <TextInput value={hd} />
+        </View>
+
+        <ImageBackground
+          style={{
+            width: 70,
+            height: 90,
+            justifyContent: 'center',
+            alignItems: 'center'
+          }}
+          source={require('../../assets/shield.png')}
+        >
+          <TextInput
+            style={{ paddingLeft: armorClass.length > 1 ? 5 : 14 }}
+            value={armorClass}
+          />
+        </ImageBackground>
+
+        <View style={styles.centered}>
+          <Text>Proficiency</Text>
+          <TextInput value={proficiency} />
+        </View>
+      </View>
     </View>
   );
 };
@@ -70,7 +103,41 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.backGround,
     paddingTop: 30,
-    justifyContent: 'space-evenly'
+
+    alignItems: 'center'
+  },
+  box: {
+    width: 75,
+    height: 75,
+    backgroundColor: Colors.underLine,
+    alignItems: 'center',
+    justifyContent: 'space-evenly',
+    marginVertical: 5
+  },
+  squContainer: {
+    backgroundColor: Colors.underLine,
+    height: 75,
+    width: 400,
+    justifyContent: 'space-around',
+    padding: 5
+  },
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+  midContainer: {
+    marginVertical: 5,
+    flexDirection: 'row',
+    width: 300,
+    justifyContent: 'space-between',
+    padding: 5
+  },
+  centered: {
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  styledTextInput: {
+    paddingLeft: 5
   }
 });
 
