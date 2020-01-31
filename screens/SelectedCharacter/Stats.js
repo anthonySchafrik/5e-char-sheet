@@ -4,7 +4,9 @@ import {
   Text,
   StyleSheet,
   ImageBackground,
-  TextInput
+  TextInput,
+  KeyboardAvoidingView,
+  ScrollView
 } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -26,67 +28,73 @@ const Stats = ({
   skills
 }) => {
   return (
-    <View style={styles.screen}>
-      {/*  */}
-      <View style={styles.box}>
-        <Text>HP</Text>
-        <TextInput value={hp} />
-      </View>
-      <View style={styles.squContainer}>
-        <View style={styles.row}>
-          <Text>Initiative</Text>
-          <TextInput value={initiative} />
-        </View>
-        <View style={styles.row}>
-          <Text>Speed</Text>
-          <TextInput value={speed} />
-        </View>
-      </View>
+    <KeyboardAvoidingView behavior="padding" style={styles.screen}>
+      <ScrollView>
+        <View style={styles.container}>
+          {/*  */}
+          <View style={styles.box}>
+            <Text>HP</Text>
+            <TextInput value={hp} />
+          </View>
 
-      <View style={styles.midContainer}>
-        <View style={styles.centered}>
-          <Text>Hit Dice</Text>
-          <TextInput value={hd} />
-        </View>
+          <View style={styles.squContainer}>
+            <View style={styles.row}>
+              <Text>Initiative</Text>
+              <TextInput value={initiative} />
+            </View>
 
-        <ImageBackground
-          style={{
-            width: 70,
-            height: 90,
-            justifyContent: 'center',
-            alignItems: 'center'
-          }}
-          source={require('../../assets/shield.png')}
-        >
-          <TextInput
-            style={{ paddingLeft: armorClass.length > 1 ? 5 : 14 }}
-            value={armorClass}
-          />
-        </ImageBackground>
+            <View style={styles.row}>
+              <Text>Speed</Text>
+              <TextInput value={speed} />
+            </View>
+          </View>
 
-        <View style={styles.centered}>
-          <Text>Proficiency</Text>
-          <TextInput value={proficiency} />
-        </View>
-      </View>
+          <View style={styles.midContainer}>
+            <View style={styles.centered}>
+              <Text>Hit Dice</Text>
+              <TextInput value={hd} />
+            </View>
 
-      <View style={styles.statContainer}>
-        <View style={styles.statRow}>
-          <StatOval />
-          <StatOval />
-        </View>
+            <ImageBackground
+              style={{
+                width: 70,
+                height: 90,
+                justifyContent: 'center',
+                alignItems: 'center'
+              }}
+              source={require('../../assets/shield.png')}
+            >
+              <TextInput
+                style={{ paddingLeft: armorClass.length > 1 ? 5 : 14 }}
+                value={armorClass}
+              />
+            </ImageBackground>
 
-        <View style={styles.statRow}>
-          <StatOval />
-          <StatOval />
-        </View>
+            <View style={styles.centered}>
+              <Text>Proficiency</Text>
+              <TextInput value={proficiency} />
+            </View>
+          </View>
 
-        <View style={styles.statRow}>
-          <StatOval />
-          <StatOval />
+          <View style={styles.statContainer}>
+            <View style={styles.row}>
+              <StatOval />
+              <StatOval />
+            </View>
+
+            <View style={styles.row}>
+              <StatOval />
+              <StatOval />
+            </View>
+
+            <View style={styles.row}>
+              <StatOval />
+              <StatOval />
+            </View>
+          </View>
         </View>
-      </View>
-    </View>
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 };
 
@@ -125,7 +133,9 @@ const mapDispatchToProp = dispatch => {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    backgroundColor: Colors.backGround,
+    backgroundColor: Colors.backGround
+  },
+  container: {
     paddingTop: 30,
     alignItems: 'center'
   },
@@ -165,10 +175,6 @@ const styles = StyleSheet.create({
     width: '95%',
     height: 400,
     justifyContent: 'space-evenly'
-  },
-  statRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between'
   }
 });
 
