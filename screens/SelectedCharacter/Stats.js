@@ -31,7 +31,7 @@ const Stats = ({
     <KeyboardAvoidingView behavior="padding" style={styles.screen}>
       <ScrollView>
         <View style={styles.container}>
-          {/*  */}
+          {/* spacing to help read */}
           <View style={styles.box}>
             <Text>HP</Text>
             <TextInput value={hp} />
