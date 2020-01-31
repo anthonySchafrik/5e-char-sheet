@@ -1,10 +1,17 @@
 import React from 'react';
-import { View, Text, StyleSheet, ImageBackground } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  ImageBackground,
+  TextInput
+} from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import StatOval from '../../components/StatOval';
+
 import Colors from '../../Colors';
-import { TextInput } from 'react-native-gesture-handler';
 
 const Stats = ({
   stats,
@@ -62,6 +69,23 @@ const Stats = ({
           <TextInput value={proficiency} />
         </View>
       </View>
+
+      <View style={styles.statContainer}>
+        <View style={styles.statRow}>
+          <StatOval />
+          <StatOval />
+        </View>
+
+        <View style={styles.statRow}>
+          <StatOval />
+          <StatOval />
+        </View>
+
+        <View style={styles.statRow}>
+          <StatOval />
+          <StatOval />
+        </View>
+      </View>
     </View>
   );
 };
@@ -103,7 +127,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.backGround,
     paddingTop: 30,
-
     alignItems: 'center'
   },
   box: {
@@ -112,14 +135,16 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.underLine,
     alignItems: 'center',
     justifyContent: 'space-evenly',
-    marginVertical: 5
+    marginVertical: 5,
+    borderRadius: 10
   },
   squContainer: {
     backgroundColor: Colors.underLine,
     height: 75,
     width: 400,
     justifyContent: 'space-around',
-    padding: 5
+    padding: 5,
+    borderRadius: 10
   },
   row: {
     flexDirection: 'row',
@@ -136,8 +161,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
-  styledTextInput: {
-    paddingLeft: 5
+  statContainer: {
+    width: '95%',
+    height: 400,
+    justifyContent: 'space-evenly'
+  },
+  statRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between'
   }
 });
 
