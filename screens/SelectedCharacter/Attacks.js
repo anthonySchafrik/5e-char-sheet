@@ -15,7 +15,7 @@ const Attacks = ({ attacks, spells }) => {
 };
 
 const mapStateToProps = state => {
-  const { attacks, spells } = state.character.selectCharacter;
+  const { attacks, spells } = state.character.selectedCharacter;
   return { attacks, spells };
 };
 

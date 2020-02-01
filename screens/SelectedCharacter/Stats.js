@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -10,6 +10,8 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+
+import { updateCreateCharacter } from '../../actions/characters';
 
 import StatOval from '../../components/StatOval';
 
@@ -25,8 +27,18 @@ const Stats = ({
   speed,
   hp,
   hd,
-  skills
+  skills,
+  updateCreateCharacter,
+  selectedCharacter
 }) => {
+  const [currentHp, handleHpUpdate] = useState(hp);
+
+  useEffect(() => {
+    return () => {
+      console.log(selectedCharacter['hit points maximum']);
+    };
+  }, []);
+
   return (
     <KeyboardAvoidingView behavior="padding" style={styles.screen}>
       <ScrollView>
@@ -34,7 +46,16 @@ const Stats = ({
           {/* spacing to help read */}
           <View style={styles.box}>
             <Text>HP</Text>
-            <TextInput value={hp} />
+            <TextInput
+              value={currentHp}
+              onChangeText={text => handleHpUpdate(text)}
+              onEndEditing={() =>
+                updateCreateCharacter({
+                  text: 'hit points maximum',
+                  update: currentHp
+                })
+              }
+            />
           </View>
 
           <View style={styles.squContainer}>
@@ -109,8 +130,10 @@ const mapStateToProps = state => {
     speed,
     'hit points maximum': hp,
     'hit dice': hd,
-    skills
-  } = state.character.selectCharacter;
+    skills,
+    'character name': name
+  } = state.character.selectedCharacter;
+  const { selectedCharacter } = state.character;
 
   return {
     stats,
@@ -122,12 +145,14 @@ const mapStateToProps = state => {
     speed,
     hp,
     hd,
-    skills
+    skills,
+    name,
+    selectedCharacter
   };
 };
 
 const mapDispatchToProp = dispatch => {
-  return bindActionCreators({}, dispatch);
+  return bindActionCreators({ updateCreateCharacter }, dispatch);
 };
 
 const styles = StyleSheet.create({

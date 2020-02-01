@@ -15,7 +15,7 @@ const Equipment = ({ treasure, equipment }) => {
 };
 
 const mapStateToProps = state => {
-  const { treasure, equipment } = state.character.selectCharacter;
+  const { treasure, equipment } = state.character.selectedCharacter;
   return { treasure, equipment };
 };
 

@@ -60,9 +60,9 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => {
-  const { selectCharacter } = state.character;
+  const { selectedCharacter } = state.character;
   return {
-    selectCharacter
+    selectedCharacter
   };
 };
 

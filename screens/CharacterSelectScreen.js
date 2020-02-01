@@ -73,9 +73,9 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => {
-  const { selectCharacter, characters } = state.character;
+  const { selectedCharacter, characters } = state.character;
   return {
-    selectCharacter,
+    selectedCharacter,
     characters
   };
 };

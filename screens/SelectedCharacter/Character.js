@@ -54,7 +54,7 @@ const mapStateToProps = state => {
     flaws,
     ideals,
     'allies & organizations': allies
-  } = state.character.selectCharacter;
+  } = state.character.selectedCharacter;
 
   return {
     name,

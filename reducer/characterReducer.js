@@ -2,11 +2,12 @@ import {
   SELECT_CHARACTER,
   DELETE_CHARACTER,
   UPDATE_CREATE_CHARACTER,
-  FETCH_CHARACTERS
+  FETCH_CHARACTERS,
+  UPDATE_SELECTED_CHARACTER
 } from '../actions/characters';
 
 const initialState = {
-  selectCharacter: {},
+  selectedCharacter: {},
   createCharacter: {
     'character name': '',
     class: '',
@@ -87,7 +88,7 @@ const CharacterReducer = (state = initialState, action) => {
     case SELECT_CHARACTER:
       return {
         ...state,
-        selectCharacter: payload
+        selectedCharacter: payload
       };
 
     case DELETE_CHARACTER:
@@ -102,6 +103,12 @@ const CharacterReducer = (state = initialState, action) => {
         ...state,
         createCharacter: { ...createCharacter, [text]: update }
       };
+
+    // case UPDATE_SELECTED_CHARACTER:
+    //   return {
+    //     ...state,
+    //     selectedCharacter: { ...selectedCharacter, [text]: update }
+    //   };
 
     case FETCH_CHARACTERS:
       return {
