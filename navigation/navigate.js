@@ -44,7 +44,7 @@ const Navigator = createStackNavigator(
 
 const MainNavigator = createDrawerNavigator(
   {
-    Home: Navigator,
+    Navigator,
     Stat,
     Equipment,
     Attacks,

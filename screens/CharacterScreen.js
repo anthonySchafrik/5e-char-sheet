@@ -3,11 +3,13 @@ import {
   View,
   StyleSheet,
   Text,
-  ScrollView,
-  TouchableNativeFeedback
+  TouchableNativeFeedback,
+  Button
 } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+
+import StyledButton from '../components/StyledButton';
 
 import Colors from '../Colors';
 
@@ -24,14 +26,17 @@ const CharacterScreen = ({ navigation }) => {
     });
   };
 
+  const navReplace = () => {
+    navigation.replace('Characters');
+  };
+
   return (
     <View style={styles.screen}>
-      <ScrollView>
-        <View style={styles.tilesContainer}>
-          <View>{buildTiles(['Stat', 'Attacks'])}</View>
-          <View>{buildTiles(['Equipment', 'Background'])}</View>
-        </View>
-      </ScrollView>
+      <View style={styles.tilesContainer}>
+        <View>{buildTiles(['Stat', 'Attacks'])}</View>
+        <View>{buildTiles(['Equipment', 'Background'])}</View>
+      </View>
+      <StyledButton text="Characters" navScreenPush={navReplace} />
     </View>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   View,
   Text,
@@ -34,18 +34,18 @@ const Stats = ({
 }) => {
   const [currentHp, handleHpUpdate] = useState(hp);
 
-  // useEffect(() => {
-  //   return async () => {
-  //     const { selectedCharacter } = store.getState().character;
-  //     const { 'character name': name } = selectedCharacter;
-  //     console.log(selectedCharacter);
-  //     try {
-  //       // await AsyncStorage.setItem(name, JSON.stringify(selectedCharacter));
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
-  // }, []);
+  useEffect(() => {
+    return async () => {
+      const { selectedCharacter } = store.getState().character;
+      const { 'character name': name } = selectedCharacter;
+
+      try {
+        // await AsyncStorage.setItem(name, JSON.stringify(selectedCharacter));
+      } catch (error) {
+        console.log(error);
+      }
+    };
+  }, []);
 
   return (
     <KeyboardAvoidingView behavior="padding" style={styles.screen}>
