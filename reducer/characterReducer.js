@@ -82,7 +82,7 @@ const initialState = {
 
 const CharacterReducer = (state = initialState, action) => {
   const { type, payload } = action;
-  const { characters, createCharacter } = state;
+  const { characters, createCharacter, selectedCharacter } = state;
 
   switch (type) {
     case SELECT_CHARACTER:
@@ -104,11 +104,12 @@ const CharacterReducer = (state = initialState, action) => {
         createCharacter: { ...createCharacter, [text]: update }
       };
 
-    // case UPDATE_SELECTED_CHARACTER:
-    //   return {
-    //     ...state,
-    //     selectedCharacter: { ...selectedCharacter, [text]: update }
-    //   };
+    case UPDATE_SELECTED_CHARACTER:
+      const { key, value } = payload;
+      return {
+        ...state,
+        selectedCharacter: { ...selectedCharacter, [key]: value }
+      };
 
     case FETCH_CHARACTERS:
       return {

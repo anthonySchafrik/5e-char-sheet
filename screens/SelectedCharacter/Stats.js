@@ -6,17 +6,18 @@ import {
   ImageBackground,
   TextInput,
   KeyboardAvoidingView,
-  ScrollView
+  ScrollView,
+  AsyncStorage
 } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { updateCreateCharacter } from '../../actions/characters';
+import { updateSelectedCharacter } from '../../actions/characters';
 
 import StatOval from '../../components/StatOval';
 
 import Colors from '../../Colors';
-
+import store from '../../store';
 const Stats = ({
   stats,
   inspiration,
@@ -28,16 +29,23 @@ const Stats = ({
   hp,
   hd,
   skills,
-  updateCreateCharacter,
+  updateSelectedCharacter,
   selectedCharacter
 }) => {
   const [currentHp, handleHpUpdate] = useState(hp);
 
-  useEffect(() => {
-    return () => {
-      console.log(selectedCharacter['hit points maximum']);
-    };
-  }, []);
+  // useEffect(() => {
+  //   return async () => {
+  //     const { selectedCharacter } = store.getState().character;
+  //     const { 'character name': name } = selectedCharacter;
+  //     console.log(selectedCharacter);
+  //     try {
+  //       // await AsyncStorage.setItem(name, JSON.stringify(selectedCharacter));
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+  // }, []);
 
   return (
     <KeyboardAvoidingView behavior="padding" style={styles.screen}>
@@ -50,9 +58,9 @@ const Stats = ({
               value={currentHp}
               onChangeText={text => handleHpUpdate(text)}
               onEndEditing={() =>
-                updateCreateCharacter({
-                  text: 'hit points maximum',
-                  update: currentHp
+                updateSelectedCharacter({
+                  key: 'hit points maximum',
+                  value: currentHp
                 })
               }
             />
@@ -152,7 +160,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProp = dispatch => {
-  return bindActionCreators({ updateCreateCharacter }, dispatch);
+  return bindActionCreators({ updateSelectedCharacter }, dispatch);
 };
 
 const styles = StyleSheet.create({

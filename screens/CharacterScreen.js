@@ -29,7 +29,7 @@ const CharacterScreen = ({ navigation }) => {
       <ScrollView>
         <View style={styles.tilesContainer}>
           <View>{buildTiles(['Stat', 'Attacks'])}</View>
-          <View>{buildTiles(['Equipment ', 'Background'])}</View>
+          <View>{buildTiles(['Equipment', 'Background'])}</View>
         </View>
       </ScrollView>
     </View>
