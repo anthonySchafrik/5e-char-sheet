@@ -26,10 +26,6 @@ const Navigator = createStackNavigator(
     Stats: StatScreen,
     Skills: SkillsScreen,
     [spell]: SpellListScreen
-    // Stat,
-    // Equipment,
-    // Attacks,
-    // Background: Character
   },
   {
     initialRouteName: 'Welcome',

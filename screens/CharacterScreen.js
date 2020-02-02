@@ -17,7 +17,10 @@ const CharacterScreen = ({ navigation }) => {
   const buildTiles = texts => {
     return texts.map((text, i) => {
       return (
-        <TouchableNativeFeedback key={i} onPress={() => navigation.push(text)}>
+        <TouchableNativeFeedback
+          key={i}
+          onPress={() => navigation.navigate(text)}
+        >
           <View style={styles.tile}>
             <Text>{text}</Text>
           </View>

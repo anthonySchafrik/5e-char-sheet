@@ -9,7 +9,7 @@ const Equipment = ({ treasure, equipment }) => {
   useEffect(() => {
     return async () => {
       try {
-        console.log('unmoint Equipment');
+        console.log('ummounted Equipment');
         // await AsyncStorage.setItem(name, JSON.stringify(selectedCharacter));
       } catch (error) {
         console.log(error);

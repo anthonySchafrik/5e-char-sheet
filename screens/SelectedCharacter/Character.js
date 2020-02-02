@@ -23,7 +23,7 @@ const Character = ({
   useEffect(() => {
     return async () => {
       try {
-        console.log('unmoint Character');
+        console.log('ummounted Character');
         // await AsyncStorage.setItem(name, JSON.stringify(selectedCharacter));
       } catch (error) {
         console.log(error);

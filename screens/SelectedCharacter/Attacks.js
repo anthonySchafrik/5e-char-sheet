@@ -9,7 +9,7 @@ const Attacks = ({ attacks, spells }) => {
   useEffect(() => {
     return async () => {
       try {
-        console.log('unmoint Attacks');
+        console.log('ummounted Attacks');
         // await AsyncStorage.setItem(name, JSON.stringify(selectedCharacter));
       } catch (error) {
         console.log(error);

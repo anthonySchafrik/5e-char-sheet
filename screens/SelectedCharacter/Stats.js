@@ -51,7 +51,7 @@ const Stats = ({ stat, updateSelectedCharacter, selectedCharacter }) => {
       const { 'character name': name } = selectedCharacter;
 
       try {
-        console.log('unmoint', selectedCharacter);
+        console.log('ummounted', selectedCharacter);
         // await AsyncStorage.setItem(name, JSON.stringify(selectedCharacter));
       } catch (error) {
         console.log(error);
