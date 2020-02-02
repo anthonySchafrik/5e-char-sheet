@@ -246,7 +246,7 @@ const styles = StyleSheet.create({
   squContainer: {
     backgroundColor: Colors.underLine,
     height: 75,
-    width: 400,
+    width: '95%',
     justifyContent: 'space-around',
     padding: 5,
     borderRadius: 10

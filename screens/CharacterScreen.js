@@ -9,6 +9,7 @@ import {
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+// import Menu from '../components/Menu';
 import StyledButton from '../components/StyledButton';
 
 import Colors from '../Colors';
@@ -35,6 +36,7 @@ const CharacterScreen = ({ navigation }) => {
 
   return (
     <View style={styles.screen}>
+      {/* <Menu navigation={navigation} /> */}
       <View style={styles.tilesContainer}>
         <View>{buildTiles(['Stat', 'Attacks'])}</View>
         <View>{buildTiles(['Equipment', 'Background'])}</View>
