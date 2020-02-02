@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -6,6 +6,16 @@ import { bindActionCreators } from 'redux';
 import Colors from '../../Colors';
 
 const Attacks = ({ attacks, spells }) => {
+  useEffect(() => {
+    return async () => {
+      try {
+        console.log('unmoint Attacks');
+        // await AsyncStorage.setItem(name, JSON.stringify(selectedCharacter));
+      } catch (error) {
+        console.log(error);
+      }
+    };
+  }, []);
   return (
     <View style={styles.screen}>
       <Text>{JSON.stringify({ attacks })}</Text>

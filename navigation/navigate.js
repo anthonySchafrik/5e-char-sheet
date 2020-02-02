@@ -25,11 +25,11 @@ const Navigator = createStackNavigator(
     [create]: CreateCharacterScreen,
     Stats: StatScreen,
     Skills: SkillsScreen,
-    [spell]: SpellListScreen,
-    Stat,
-    Equipment,
-    Attacks,
-    Background: Character
+    [spell]: SpellListScreen
+    // Stat,
+    // Equipment,
+    // Attacks,
+    // Background: Character
   },
   {
     initialRouteName: 'Welcome',
@@ -44,13 +44,18 @@ const Navigator = createStackNavigator(
 
 const MainNavigator = createDrawerNavigator(
   {
-    Navigator,
+    Home: Navigator,
     Stat,
     Equipment,
     Attacks,
     Background: Character
   },
-  { drawerWidth: 150, drawerPosition: 'left', drawerBackgroundColor: '#b6b6b6' }
+  {
+    unmountInactiveRoutes: true,
+    drawerWidth: 150,
+    drawerPosition: 'left',
+    drawerBackgroundColor: '#b6b6b6'
+  }
 );
 
 export default createAppContainer(MainNavigator);

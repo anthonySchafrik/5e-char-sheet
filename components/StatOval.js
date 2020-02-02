@@ -5,7 +5,7 @@ import Colors from '../Colors';
 
 const StatOval = ({ stat, score, multiplier, save }) => {
   const title = stat.charAt(0).toUpperCase() + stat.slice(1);
-  console.log(stat, score, multiplier, save);
+
   return (
     <View style={styles.container}>
       <Text style={styles.styledText}>{title}</Text>

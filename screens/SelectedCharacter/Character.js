@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -20,6 +20,17 @@ const Character = ({
   ideals,
   allies
 }) => {
+  useEffect(() => {
+    return async () => {
+      try {
+        console.log('unmoint Character');
+        // await AsyncStorage.setItem(name, JSON.stringify(selectedCharacter));
+      } catch (error) {
+        console.log(error);
+      }
+    };
+  }, []);
+
   return (
     <View style={styles.screen}>
       <Text>{JSON.stringify({ name })}</Text>
