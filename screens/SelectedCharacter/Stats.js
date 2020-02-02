@@ -135,18 +135,54 @@ const Stats = ({ stat, updateSelectedCharacter, selectedCharacter }) => {
 
           <View style={styles.statContainer}>
             <View style={styles.row}>
-              <StatOval />
-              <StatOval />
+              <StatOval
+                stat="strength"
+                score={stats.strength.stat}
+                multiplier={stats.strength.muli}
+                save={savingThrows.strength.muli}
+                proficient={savingThrows.strength.proficient}
+              />
+              <StatOval
+                stat="dexterity"
+                score={stats.dexterity.stat}
+                multiplier={stats.dexterity.muli}
+                save={savingThrows.dexterity.muli}
+                proficient={savingThrows.dexterity.proficient}
+              />
             </View>
 
             <View style={styles.row}>
-              <StatOval />
-              <StatOval />
+              <StatOval
+                stat="intelligence"
+                score={stats.intelligence.stat}
+                multiplier={stats.intelligence.muli}
+                save={savingThrows.intelligence.muli}
+                proficient={savingThrows.intelligence.proficient}
+              />
+              <StatOval
+                stat="charisma"
+                score={stats.charisma.stat}
+                multiplier={stats.charisma.muli}
+                save={savingThrows.charisma.muli}
+                proficient={savingThrows.charisma.proficient}
+              />
             </View>
 
             <View style={styles.row}>
-              <StatOval />
-              <StatOval />
+              <StatOval
+                stat="wisdom"
+                score={stats.wisdom.stat}
+                multiplier={stats.wisdom.muli}
+                save={savingThrows.wisdom.muli}
+                proficient={savingThrows.wisdom.proficient}
+              />
+              <StatOval
+                stat="constitution"
+                score={stats.constitution.stat}
+                multiplier={stats.constitution.muli}
+                save={savingThrows.constitution.muli}
+                proficient={savingThrows.constitution.proficient}
+              />
             </View>
           </View>
         </View>
@@ -164,7 +200,8 @@ const mapStateToProps = state => {
     speed,
     'hit points maximum': hp,
     'hit dice': hd,
-    'character name': name
+    'character name': name,
+    savingThrows
   } = state.character.selectedCharacter;
   const { selectedCharacter } = state.character;
 
@@ -177,7 +214,8 @@ const mapStateToProps = state => {
       speed,
       hp,
       hd,
-      name
+      name,
+      savingThrows
     },
     selectedCharacter
   };
