@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import {
   View,
   Text,
@@ -18,21 +18,32 @@ import StatOval from '../../components/StatOval';
 
 import Colors from '../../Colors';
 import store from '../../store';
-const Stats = ({
-  stats,
-  inspiration,
-  proficiency,
-  savingThrows,
-  armorClass,
-  initiative,
-  speed,
-  hp,
-  hd,
-  skills,
-  updateSelectedCharacter,
-  selectedCharacter
-}) => {
-  const [currentHp, handleHpUpdate] = useState(hp);
+
+const Stats = ({ stat, updateSelectedCharacter, selectedCharacter }) => {
+  const [currentStats, handleStatsUpdate] = useState({
+    ...stat
+  });
+
+  const {
+    stats,
+    proficiency,
+    savingThrows,
+    armorClass,
+    initiative,
+    speed,
+    hp,
+    hd
+  } = currentStats;
+
+  const setStatUpdates = (key, value) => {
+    handleStatsUpdate({
+      ...currentStats,
+      [key]: value
+    });
+  };
+
+  const handleUpdateCharacter = (key, value) => () =>
+    updateSelectedCharacter({ key, value });
 
   useEffect(() => {
     return async () => {
@@ -40,6 +51,7 @@ const Stats = ({
       const { 'character name': name } = selectedCharacter;
 
       try {
+        console.log('unmoint', selectedCharacter);
         // await AsyncStorage.setItem(name, JSON.stringify(selectedCharacter));
       } catch (error) {
         console.log(error);
@@ -55,33 +67,40 @@ const Stats = ({
           <View style={styles.box}>
             <Text>HP</Text>
             <TextInput
-              value={currentHp}
-              onChangeText={text => handleHpUpdate(text)}
-              onEndEditing={() =>
-                updateSelectedCharacter({
-                  key: 'hit points maximum',
-                  value: currentHp
-                })
-              }
+              value={hp}
+              onChangeText={text => setStatUpdates('hp', text)}
+              onEndEditing={handleUpdateCharacter('hit points maximum', hp)}
             />
           </View>
 
           <View style={styles.squContainer}>
             <View style={styles.row}>
               <Text>Initiative</Text>
-              <TextInput value={initiative} />
+              <TextInput
+                value={initiative}
+                onChangeText={text => setStatUpdates('initiative', text)}
+                onEndEditing={handleUpdateCharacter('initiative', initiative)}
+              />
             </View>
 
             <View style={styles.row}>
               <Text>Speed</Text>
-              <TextInput value={speed} />
+              <TextInput
+                value={speed}
+                onChangeText={text => setStatUpdates('speed', text)}
+                onEndEditing={handleUpdateCharacter('speed', speed)}
+              />
             </View>
           </View>
 
           <View style={styles.midContainer}>
             <View style={styles.centered}>
               <Text>Hit Dice</Text>
-              <TextInput value={hd} />
+              <TextInput
+                value={hd}
+                onChangeText={text => setStatUpdates('hd', text)}
+                onEndEditing={handleUpdateCharacter('hit dice', hd)}
+              />
             </View>
 
             <ImageBackground
@@ -96,12 +115,21 @@ const Stats = ({
               <TextInput
                 style={{ paddingLeft: armorClass.length > 1 ? 5 : 14 }}
                 value={armorClass}
+                onChangeText={text => setStatUpdates('armorClass', text)}
+                onEndEditing={handleUpdateCharacter('armor class', armorClass)}
               />
             </ImageBackground>
 
             <View style={styles.centered}>
               <Text>Proficiency</Text>
-              <TextInput value={proficiency} />
+              <TextInput
+                value={proficiency}
+                onChangeText={text => setStatUpdates('proficiency', text)}
+                onEndEditing={handleUpdateCharacter(
+                  'proficiency bonus',
+                  proficiency
+                )}
+              />
             </View>
           </View>
 
@@ -130,31 +158,27 @@ const Stats = ({
 const mapStateToProps = state => {
   const {
     stats,
-    inspiration,
     'proficiency bonus': proficiency,
-    savingThrows,
     'armor class': armorClass,
     initiative,
     speed,
     'hit points maximum': hp,
     'hit dice': hd,
-    skills,
     'character name': name
   } = state.character.selectedCharacter;
   const { selectedCharacter } = state.character;
 
   return {
-    stats,
-    inspiration,
-    proficiency,
-    savingThrows,
-    armorClass,
-    initiative,
-    speed,
-    hp,
-    hd,
-    skills,
-    name,
+    stat: {
+      stats,
+      proficiency,
+      armorClass,
+      initiative,
+      speed,
+      hp,
+      hd,
+      name
+    },
     selectedCharacter
   };
 };
