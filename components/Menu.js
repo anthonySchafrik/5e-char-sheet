@@ -1,7 +1,9 @@
 import React from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { DrawerActions } from 'react-navigation-drawer';
+
+import Colors from '../Colors';
 
 const Menu = ({ navigation }) => {
   return (
@@ -9,8 +11,8 @@ const Menu = ({ navigation }) => {
       <Ionicons
         onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}
         name="md-menu"
-        size={24}
-        color="black"
+        size={35}
+        color={Colors.primary}
       />
     </View>
   );

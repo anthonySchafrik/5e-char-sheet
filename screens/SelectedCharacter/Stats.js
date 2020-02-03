@@ -15,11 +15,17 @@ import { bindActionCreators } from 'redux';
 import { updateSelectedCharacter } from '../../actions/characters';
 
 import StatOval from '../../components/StatOval';
+import Menu from '../../components/Menu';
 
 import Colors from '../../Colors';
 import store from '../../store';
 
-const Stats = ({ stat, updateSelectedCharacter, selectedCharacter }) => {
+const Stats = ({
+  stat,
+  updateSelectedCharacter,
+  selectedCharacter,
+  navigation
+}) => {
   const [currentStats, handleStatsUpdate] = useState({
     ...stat
   });
@@ -45,25 +51,27 @@ const Stats = ({ stat, updateSelectedCharacter, selectedCharacter }) => {
   const handleUpdateCharacter = (key, value) => () =>
     updateSelectedCharacter({ key, value });
 
-  useEffect(() => {
-    return async () => {
-      const { selectedCharacter } = store.getState().character;
-      const { 'character name': name } = selectedCharacter;
+  // useEffect(() => {
+  //   return async () => {
+  //     const { selectedCharacter } = store.getState().character;
+  //     const { 'character name': name } = selectedCharacter;
 
-      try {
-        console.log('ummounted', selectedCharacter);
-        // await AsyncStorage.setItem(name, JSON.stringify(selectedCharacter));
-      } catch (error) {
-        console.log(error);
-      }
-    };
-  }, []);
+  //     try {
+  //       console.log('ummounted', selectedCharacter);
+  //       // await AsyncStorage.setItem(name, JSON.stringify(selectedCharacter));
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+  // }, []);
 
   return (
     <KeyboardAvoidingView behavior="padding" style={styles.screen}>
       <ScrollView>
+        <View style={styles.styledMenu}>
+          <Menu navigation={navigation} />
+        </View>
         <View style={styles.container}>
-          {/* spacing to help read */}
           <View style={styles.box}>
             <Text>HP</Text>
             <TextInput
@@ -95,9 +103,10 @@ const Stats = ({ stat, updateSelectedCharacter, selectedCharacter }) => {
 
           <View style={styles.midContainer}>
             <View style={styles.centered}>
-              <Text>Hit Dice</Text>
+              <Text style={styles.styledText}>Hit Dice</Text>
               <TextInput
                 value={hd}
+                style={styles.styledText}
                 onChangeText={text => setStatUpdates('hd', text)}
                 onEndEditing={handleUpdateCharacter('hit dice', hd)}
               />
@@ -113,7 +122,10 @@ const Stats = ({ stat, updateSelectedCharacter, selectedCharacter }) => {
               source={require('../../assets/shield.png')}
             >
               <TextInput
-                style={{ paddingLeft: armorClass.length > 1 ? 5 : 14 }}
+                style={{
+                  ...styles.styledText,
+                  paddingLeft: armorClass.length > 1 ? 5 : 14
+                }}
                 value={armorClass}
                 onChangeText={text => setStatUpdates('armorClass', text)}
                 onEndEditing={handleUpdateCharacter('armor class', armorClass)}
@@ -121,9 +133,10 @@ const Stats = ({ stat, updateSelectedCharacter, selectedCharacter }) => {
             </ImageBackground>
 
             <View style={styles.centered}>
-              <Text>Proficiency</Text>
+              <Text style={styles.styledText}>Proficiency</Text>
               <TextInput
                 value={proficiency}
+                style={styles.styledText}
                 onChangeText={text => setStatUpdates('proficiency', text)}
                 onEndEditing={handleUpdateCharacter(
                   'proficiency bonus',
@@ -231,7 +244,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.background
   },
   container: {
-    paddingTop: 30,
+    top: -35,
     alignItems: 'center'
   },
   box: {
@@ -270,6 +283,14 @@ const styles = StyleSheet.create({
     width: '95%',
     height: 400,
     justifyContent: 'space-evenly'
+  },
+  styledText: {
+    color: Colors.font
+  },
+  styledMenu: {
+    alignSelf: 'flex-start',
+    paddingLeft: 10,
+    paddingTop: 30
   }
 });
 

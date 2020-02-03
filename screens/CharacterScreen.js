@@ -9,7 +9,7 @@ import {
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-// import Menu from '../components/Menu';
+import Menu from '../components/Menu';
 import StyledButton from '../components/StyledButton';
 
 import Colors from '../Colors';
@@ -36,12 +36,14 @@ const CharacterScreen = ({ navigation }) => {
 
   return (
     <View style={styles.screen}>
-      {/* <Menu navigation={navigation} /> */}
-      <View style={styles.tilesContainer}>
-        <View>{buildTiles(['Stat', 'Attacks'])}</View>
-        <View>{buildTiles(['Equipment', 'background'])}</View>
+      <Menu navigation={navigation} />
+      <View style={styles.container}>
+        <View style={styles.tilesContainer}>
+          <View>{buildTiles(['Stat', 'Attacks'])}</View>
+          <View>{buildTiles(['Equipment', 'background'])}</View>
+        </View>
+        <StyledButton text="Characters" navScreenPush={navReplace} />
       </View>
-      <StyledButton text="Characters" navScreenPush={navReplace} />
     </View>
   );
 };
@@ -49,10 +51,14 @@ const CharacterScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    flexDirection: 'column',
+    alignItems: 'flex-start',
+    backgroundColor: Colors.background,
+    padding: 10
+  },
+  container: {
     justifyContent: 'space-around',
     alignItems: 'center',
-    backgroundColor: Colors.background
+    height: '100%'
   },
   tilesContainer: {
     width: '100%',
