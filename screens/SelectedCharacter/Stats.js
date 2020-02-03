@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import {
   View,
   Text,
@@ -20,15 +20,25 @@ import Menu from '../../components/Menu';
 import Colors from '../../Colors';
 import store from '../../store';
 
-const Stats = ({
-  stat,
-  updateSelectedCharacter,
-  selectedCharacter,
-  navigation
-}) => {
-  const [currentStats, handleStatsUpdate] = useState({
-    ...stat
-  });
+const statReducer = (state, action) => {
+  const { type, payload } = action;
+  const { key, value } = payload;
+
+  switch (type) {
+    case 'update':
+      return {
+        ...state,
+        [key]: value
+      };
+    case 'retrieve':
+      return state;
+    default:
+      throw new Error();
+  }
+};
+
+const Stats = ({ stat, updateSelectedCharacter, navigation }) => {
+  const [updatedStats, statsDispatch] = useReducer(statReducer, stat);
 
   const {
     stats,
@@ -39,14 +49,7 @@ const Stats = ({
     speed,
     hp,
     hd
-  } = currentStats;
-
-  const setStatUpdates = (key, value) => {
-    handleStatsUpdate({
-      ...currentStats,
-      [key]: value
-    });
-  };
+  } = updatedStats;
 
   const handleUpdateCharacter = (key, value) => () =>
     updateSelectedCharacter({ key, value });
@@ -76,7 +79,12 @@ const Stats = ({
             <Text>HP</Text>
             <TextInput
               value={hp}
-              onChangeText={text => setStatUpdates('hp', text)}
+              onChangeText={text =>
+                statsDispatch({
+                  type: 'update',
+                  payload: { key: 'hp', value: text }
+                })
+              }
               onEndEditing={handleUpdateCharacter('hit points maximum', hp)}
             />
           </View>
@@ -86,7 +94,12 @@ const Stats = ({
               <Text>Initiative</Text>
               <TextInput
                 value={initiative}
-                onChangeText={text => setStatUpdates('initiative', text)}
+                onChangeText={text =>
+                  statsDispatch({
+                    type: 'update',
+                    payload: { key: 'initiative', value: text }
+                  })
+                }
                 onEndEditing={handleUpdateCharacter('initiative', initiative)}
               />
             </View>
@@ -95,7 +108,12 @@ const Stats = ({
               <Text>Speed</Text>
               <TextInput
                 value={speed}
-                onChangeText={text => setStatUpdates('speed', text)}
+                onChangeText={text =>
+                  statsDispatch({
+                    type: 'update',
+                    payload: { key: 'speed', value: text }
+                  })
+                }
                 onEndEditing={handleUpdateCharacter('speed', speed)}
               />
             </View>
@@ -107,7 +125,12 @@ const Stats = ({
               <TextInput
                 value={hd}
                 style={styles.styledText}
-                onChangeText={text => setStatUpdates('hd', text)}
+                onChangeText={text =>
+                  statsDispatch({
+                    type: 'update',
+                    payload: { key: 'hd', value: text }
+                  })
+                }
                 onEndEditing={handleUpdateCharacter('hit dice', hd)}
               />
             </View>
@@ -127,7 +150,12 @@ const Stats = ({
                   paddingLeft: armorClass.length > 1 ? 5 : 14
                 }}
                 value={armorClass}
-                onChangeText={text => setStatUpdates('armorClass', text)}
+                onChangeText={text =>
+                  statsDispatch({
+                    type: 'update',
+                    payload: { key: 'armorClass', value: text }
+                  })
+                }
                 onEndEditing={handleUpdateCharacter('armor class', armorClass)}
               />
             </ImageBackground>
@@ -137,7 +165,12 @@ const Stats = ({
               <TextInput
                 value={proficiency}
                 style={styles.styledText}
-                onChangeText={text => setStatUpdates('proficiency', text)}
+                onChangeText={text =>
+                  statsDispatch({
+                    type: 'update',
+                    payload: { key: 'proficiency', value: text }
+                  })
+                }
                 onEndEditing={handleUpdateCharacter(
                   'proficiency bonus',
                   proficiency
@@ -216,7 +249,6 @@ const mapStateToProps = state => {
     'character name': name,
     savingThrows
   } = state.character.selectedCharacter;
-  const { selectedCharacter } = state.character;
 
   return {
     stat: {
@@ -229,8 +261,7 @@ const mapStateToProps = state => {
       hd,
       name,
       savingThrows
-    },
-    selectedCharacter
+    }
   };
 };
 
