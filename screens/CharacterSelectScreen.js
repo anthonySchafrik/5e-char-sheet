@@ -40,7 +40,7 @@ class CharacterSelectScreen extends Component {
 
     return (
       <View style={styles.screen}>
-        <Image source={require('../assets/sword-dice.jpg')} />
+        <Image source={require('../assets/sword-dice.png')} />
 
         <View style={styles.listContainer}>
           <CharacterList
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'space-around',
     alignItems: 'center',
-    backgroundColor: Colors.backGround
+    backgroundColor: Colors.background
   },
   listContainer: {
     height: 170,

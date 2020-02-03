@@ -75,7 +75,7 @@ class CreateCharacterScreen extends Component {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    backgroundColor: Colors.backGround
+    backgroundColor: Colors.background
   },
   container: {
     alignItems: 'center',

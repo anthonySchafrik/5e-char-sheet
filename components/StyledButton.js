@@ -15,7 +15,7 @@ const StyledButton = ({ navScreenPush, text, style }) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: Colors.underLine,
+    backgroundColor: Colors.primary,
     justifyContent: 'center',
     alignItems: 'center',
     height: 40,

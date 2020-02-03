@@ -29,25 +29,29 @@ const SavingThrowRow = ({ text, updateCreateCharacter, savingThrows }) => {
         <View
           style={{
             ...styles.checkedCircle,
-            backgroundColor: proficient ? 'black' : Colors.underLine
+            backgroundColor: proficient ? 'black' : Colors.primary
           }}
         >
-          <Text onPress={() => handleProficient(!proficient)} />
+          <Text
+            style={{ color: Colors.font }}
+            onPress={() => handleProficient(!proficient)}
+          />
         </View>
       </Col>
 
       <Col>
         <TextInput
           placeholder="Mult"
-          placeholderTextColor="black"
+          placeholderTextColor={Colors.font}
           style={styles.styledInput}
           onChangeText={text => handleUpdateMult(text)}
           onEndEditing={handleCharacterUpdate}
+          value={updateMult}
         />
       </Col>
 
       <Col style={{ alignItems: 'flex-end' }}>
-        <Text>{text}</Text>
+        <Text style={{ color: Colors.font }}>{text}</Text>
       </Col>
     </Grid>
   );
@@ -67,9 +71,10 @@ const styles = StyleSheet.create({
     borderRadius: 25
   },
   styledInput: {
-    borderColor: Colors.underLine,
+    borderColor: Colors.primary,
     borderBottomWidth: 1,
-    width: '35%'
+    width: '35%',
+    color: Colors.font
   }
 });
 

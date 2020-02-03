@@ -44,7 +44,7 @@ const MainNavigator = createDrawerNavigator(
     Stat,
     Equipment,
     Attacks,
-    Background: Character
+    background: Character
   },
   {
     unmountInactiveRoutes: true,

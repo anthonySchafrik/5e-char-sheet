@@ -60,13 +60,13 @@ const SpellListScreen = ({ createCharacter, navigation }) => {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    backgroundColor: Colors.backGround
+    backgroundColor: Colors.background
   },
   styledButton: {
     height: 40,
     width: 120,
     borderRadius: 10,
-    backgroundColor: Colors.underLine,
+    backgroundColor: Colors.primary,
     justifyContent: 'center',
     alignItems: 'center'
   },
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
   styledText: {
     color: 'white'
   },
-  spellInnerContainer: { height: 300, borderColor: 'black', borderWidth: 1 }
+  spellInnerContainer: { height: 300 }
 });
 
 const mapStateToProps = state => {

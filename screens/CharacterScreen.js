@@ -39,7 +39,7 @@ const CharacterScreen = ({ navigation }) => {
       {/* <Menu navigation={navigation} /> */}
       <View style={styles.tilesContainer}>
         <View>{buildTiles(['Stat', 'Attacks'])}</View>
-        <View>{buildTiles(['Equipment', 'Background'])}</View>
+        <View>{buildTiles(['Equipment', 'background'])}</View>
       </View>
       <StyledButton text="Characters" navScreenPush={navReplace} />
     </View>
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'space-around',
     alignItems: 'center',
-    backgroundColor: Colors.backGround
+    backgroundColor: Colors.background
   },
   tilesContainer: {
     width: '100%',
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly'
   },
   tile: {
-    backgroundColor: Colors.underLine,
+    backgroundColor: Colors.primary,
     height: 100,
     width: 100,
     marginVertical: 15,

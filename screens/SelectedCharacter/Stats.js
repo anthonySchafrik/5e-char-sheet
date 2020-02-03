@@ -228,7 +228,7 @@ const mapDispatchToProp = dispatch => {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    backgroundColor: Colors.backGround
+    backgroundColor: Colors.background
   },
   container: {
     paddingTop: 30,
@@ -237,14 +237,14 @@ const styles = StyleSheet.create({
   box: {
     width: 75,
     height: 75,
-    backgroundColor: Colors.underLine,
+    backgroundColor: Colors.primary,
     alignItems: 'center',
     justifyContent: 'space-evenly',
     marginVertical: 5,
     borderRadius: 10
   },
   squContainer: {
-    backgroundColor: Colors.underLine,
+    backgroundColor: Colors.primary,
     height: 75,
     width: '95%',
     justifyContent: 'space-around',

@@ -28,7 +28,7 @@ class EquipmentComponent extends Component {
     return texts.map((x, i) => {
       return (
         <View key={i} style={styles.row}>
-          <Text>{x}</Text>
+          <Text style={{ color: Colors.font }}>{x}</Text>
           <TextInput
             style={styles.rowInput}
             multiline={true}
@@ -46,7 +46,7 @@ class EquipmentComponent extends Component {
     return (
       <View style={styles.screen}>
         <View>
-          <Text>Equipment</Text>
+          <Text style={{ color: Colors.font }}>Equipment</Text>
         </View>
         <View style={styles.container}>
           {/* left column */}
@@ -77,13 +77,13 @@ const styles = StyleSheet.create({
   },
   container: {
     width: '100%',
-    borderColor: Colors.underLine,
+    borderColor: Colors.primary,
     borderWidth: 1,
     flexDirection: 'row',
     justifyContent: 'space-between'
   },
   rowInput: {
-    borderColor: Colors.underLine,
+    borderColor: Colors.primary,
     borderBottomWidth: 1
   },
   rowContainer: {
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     width: '75%'
   },
   textInput: {
-    borderColor: Colors.underLine,
+    borderColor: Colors.primary,
     borderBottomWidth: 1
   }
 });

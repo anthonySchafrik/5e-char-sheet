@@ -36,7 +36,7 @@ const mapDispatchToProp = dispatch => {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    backgroundColor: Colors.backGround,
+    backgroundColor: Colors.background,
     paddingTop: 30,
     justifyContent: 'space-around'
   }

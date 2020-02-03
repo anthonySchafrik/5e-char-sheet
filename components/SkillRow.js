@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { updateCreateCharacter } from '../actions/characters';
+
 import Colors from '../Colors';
 
 const SkillRow = ({ text, updateCreateCharacter, subText, skills }) => {
@@ -38,10 +39,10 @@ const SkillRow = ({ text, updateCreateCharacter, subText, skills }) => {
             <Text onPress={setProficient} />
           </View>
         </Col>
-        <Col size={9}>
+        <Col size={10}>
           <TextInput
             placeholder="Mult"
-            placeholderTextColor="black"
+            placeholderTextColor={Colors.font}
             style={styles.styledTextInput}
             onChangeText={text => handleUpdateMult(text)}
             onEndEditing={handleCharacterUpdate}
@@ -77,11 +78,13 @@ const styles = StyleSheet.create({
     borderRadius: 25
   },
   styledTextInput: {
-    borderBottomColor: Colors.underLine,
-    borderBottomWidth: 1
+    borderBottomColor: Colors.primary,
+    borderBottomWidth: 1,
+    color: Colors.font
   },
   styledText: {
-    fontSize: 12
+    fontSize: 12,
+    color: Colors.font
   }
 });
 

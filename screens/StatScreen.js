@@ -95,7 +95,7 @@ class StatScreen extends Component {
                   'Wisdom',
                   'Charisma'
                 ])}
-                <Text>Saving Throws</Text>
+                <Text style={{ color: Colors.font }}>Saving Throws</Text>
               </View>
 
               <View style={styles.boxRows}>
@@ -108,11 +108,10 @@ class StatScreen extends Component {
 
               <View style={styles.hitRow}>
                 <View style={styles.row}>
-                  <Text>Hit Points Maximum</Text>
+                  <Text style={{ color: Colors.font }}>Hit Points Maximum</Text>
                   <TextInput
                     style={styles.styledTextInput}
                     placeholder="Mult"
-                    placeholderTextColor="black"
                     onChangeText={text =>
                       handleStateUpdate('hit points maximum', text)
                     }
@@ -120,11 +119,10 @@ class StatScreen extends Component {
                   />
                 </View>
                 <View style={styles.row}>
-                  <Text>Hit Dice</Text>
+                  <Text style={{ color: Colors.font }}>Hit Dice</Text>
                   <TextInput
                     style={styles.styledTextInput}
                     placeholder="Mult"
-                    placeholderTextColor="black"
                     onChangeText={text => handleStateUpdate('hit dice', text)}
                     onEndEditing={handleCharUpdate('hit dice')}
                   />
@@ -149,14 +147,14 @@ class StatScreen extends Component {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    backgroundColor: Colors.backGround
+    backgroundColor: Colors.background
   },
   container: {
     flexDirection: 'row',
     justifyContent: 'space-around'
   },
   savingRow: {
-    backgroundColor: Colors.inputColor,
+    backgroundColor: Colors.secondary,
     alignItems: 'center'
   },
   boxRows: {
@@ -165,7 +163,7 @@ const styles = StyleSheet.create({
   },
   hitRow: {
     paddingTop: 3,
-    backgroundColor: Colors.inputColor
+    backgroundColor: Colors.secondary
   },
   row: {
     flexDirection: 'row',
@@ -175,12 +173,12 @@ const styles = StyleSheet.create({
     paddingRight: 5
   },
   styledTextInput: {
-    borderBottomColor: Colors.underLine,
+    borderBottomColor: Colors.primary,
     borderBottomWidth: 1
   },
   styledButton: {
     marginTop: 30,
-    backgroundColor: Colors.inputColor
+    backgroundColor: Colors.secondary
   }
 });
 

@@ -32,6 +32,7 @@ class Attacks extends Component {
 
   render = () => {
     const { stateUpdater, handleCharacterUpdate } = this;
+    const { name, bonus, damage } = this.state;
 
     return (
       <Grid style={styles.screen}>
@@ -40,8 +41,10 @@ class Attacks extends Component {
             <TextInput
               onChangeText={text => stateUpdater('name', text)}
               placeholder="Attack Name"
-              placeholderTextColor="black"
+              placeholderTextColor={Colors.font}
               onEndEditing={handleCharacterUpdate}
+              value={name}
+              style={styles.styledInput}
             />
           </View>
         </Col>
@@ -49,10 +52,12 @@ class Attacks extends Component {
         <Col>
           <View style={styles.colContainer}>
             <TextInput
+              style={styles.styledInput}
               onChangeText={text => stateUpdater('bonus', text)}
               placeholder="Bonus"
-              placeholderTextColor="black"
+              placeholderTextColor={Colors.font}
               onEndEditing={handleCharacterUpdate}
+              value={bonus}
             />
           </View>
         </Col>
@@ -60,10 +65,12 @@ class Attacks extends Component {
         <Col>
           <View style={styles.colContainer}>
             <TextInput
+              style={styles.styledInput}
               onChangeText={text => stateUpdater('damage', text)}
               placeholder="Damage"
-              placeholderTextColor="black"
+              placeholderTextColor={Colors.font}
               onEndEditing={handleCharacterUpdate}
+              value={damage}
             />
           </View>
         </Col>
@@ -79,11 +86,10 @@ const styles = StyleSheet.create({
   colContainer: {
     borderBottomWidth: 1,
     width: '90%',
-    borderColor: Colors.underLine
+    borderColor: Colors.primary
   },
   styledInput: {
-    borderBottomWidth: 1,
-    borderColor: Colors.underLine
+    color: Colors.font
   }
 });
 

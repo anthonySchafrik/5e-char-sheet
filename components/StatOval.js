@@ -31,7 +31,7 @@ const StatOval = ({ stat, score, multiplier, save }) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: Colors.underLine,
+    backgroundColor: Colors.primary,
     alignItems: 'center',
     width: 170,
     borderRadius: 40

@@ -16,14 +16,15 @@ const StatRectangle = ({ text, updateCreateCharacter, outline }) => {
     <View style={styles.container}>
       <View style={styles[outline]}>
         <TextInput
-          style={{ paddingLeft: 6 }}
+          style={{ paddingLeft: update.length > 0 ? 6 : 0, color: Colors.font }}
           placeholder="Mult"
-          placeholderTextColor="black"
+          value={update}
+          placeholderTextColor={Colors.font}
           onChangeText={text => handleUpdate(text)}
           onEndEditing={handleCharacterUpdate}
         />
       </View>
-      <Text>{text}</Text>
+      <Text style={{ color: Colors.font }}>{text}</Text>
     </View>
   );
 };
@@ -32,7 +33,7 @@ const styles = StyleSheet.create({
   container: {
     height: 40,
     width: 260,
-    backgroundColor: Colors.inputColor,
+    backgroundColor: Colors.secondary,
     marginVertical: 5,
     flexDirection: 'row',
     alignItems: 'center',
@@ -45,7 +46,7 @@ const styles = StyleSheet.create({
     width: 35,
     alignItems: 'center',
     justifyContent: 'center',
-    borderColor: Colors.underLine,
+    borderColor: Colors.primary,
     borderWidth: 1,
     borderRadius: 25
   },
@@ -54,7 +55,7 @@ const styles = StyleSheet.create({
     width: 35,
     alignItems: 'center',
     justifyContent: 'center',
-    borderColor: Colors.underLine,
+    borderColor: Colors.primary,
     borderWidth: 1
   }
 });

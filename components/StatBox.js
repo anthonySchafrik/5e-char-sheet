@@ -23,18 +23,21 @@ const StatBox = ({ text, updateCreateCharacter, stats }) => {
     <View style={styles.container}>
       <Text style={styles.styledText}>{text}</Text>
       <TextInput
+        style={{ color: Colors.font }}
         placeholder="Mult"
-        placeholderTextColor="black"
+        placeholderTextColor={Colors.font}
         onChangeText={text => handleUpdateMult(text)}
         onEndEditing={handleCharacterUpdate}
+        value={updateMult}
       />
       <View style={styles.circleOutLine}>
         <TextInput
-          style={{ paddingLeft: 5 }}
+          style={{ paddingLeft: 5, color: Colors.font }}
           placeholder="stat"
-          placeholderTextColor="black"
+          placeholderTextColor={Colors.font}
           onChangeText={text => handleUpdateStat(text)}
           onEndEditing={handleCharacterUpdate}
+          value={updateStat}
         />
       </View>
     </View>
@@ -45,15 +48,15 @@ const styles = StyleSheet.create({
   container: {
     height: 80,
     width: 80,
-    backgroundColor: Colors.inputColor,
+    backgroundColor: Colors.secondary,
     marginVertical: 5,
     alignItems: 'center'
   },
-  styledText: {},
+  styledText: { color: Colors.font },
   circleOutLine: {
     alignItems: 'center',
     justifyContent: 'center',
-    borderColor: Colors.underLine,
+    borderColor: Colors.primary,
     borderWidth: 1,
     borderRadius: 25,
     width: 40,

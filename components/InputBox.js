@@ -17,14 +17,21 @@ const InputBox = ({ text, updateCreateCharacter, style }) => {
     <View style={styles.screen}>
       <View style={styles.container}>
         <TextInput
-          style={[style, styles.styledTextInput]}
+          style={[
+            {
+              ...styles.styledTextInput,
+              ...style,
+              paddingLeft: update.length > 2 ? 100 : 0
+            }
+          ]}
           placeholder="stat"
-          placeholderTextColor="black"
+          placeholderTextColor={Colors.font}
           onChangeText={text => handleUpdate(text)}
           onEndEditing={handleCharacterUpdate}
+          value={update}
         />
       </View>
-      <Text>{text}</Text>
+      <Text style={{ color: Colors.font }}>{text}</Text>
     </View>
   );
 };
@@ -36,13 +43,14 @@ const styles = StyleSheet.create({
   container: {
     height: 80,
     width: 80,
-    backgroundColor: Colors.inputColor,
+    backgroundColor: Colors.secondary,
     marginVertical: 5,
     alignItems: 'center',
     justifyContent: 'center'
   },
   styledTextInput: {
-    fontSize: 30
+    fontSize: 30,
+    color: Colors.font
   }
 });
 

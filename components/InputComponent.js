@@ -14,7 +14,7 @@ const InputComponent = ({ text, updateCreateCharacter }) => {
 
   return (
     <View style={styles.container}>
-      <Text>{text}</Text>
+      <Text style={{ color: Colors.font }}>{text}</Text>
       <TextInput
         style={styles.input}
         onChangeText={text => handleUpdate(text)}
@@ -30,9 +30,9 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   input: {
-    borderBottomColor: Colors.inputColor,
+    borderBottomColor: Colors.secondary,
     borderBottomWidth: 1,
-    color: Colors.inputColor,
+    color: Colors.secondary,
     width: '45%'
   }
 });

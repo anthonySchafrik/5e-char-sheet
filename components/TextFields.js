@@ -14,7 +14,7 @@ const TextFields = ({ text, updateCreateCharacter }) => {
 
   return (
     <View style={styles.container}>
-      <Text>{text}</Text>
+      <Text style={{ color: Colors.font }}>{text}</Text>
       <TextInput
         style={styles.textInput}
         multiline={true}
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     width: '85%'
   },
   textInput: {
-    borderColor: Colors.underLine,
+    borderColor: Colors.primary,
     borderWidth: 1
   }
 });

@@ -72,20 +72,20 @@ const SkillsScreen = ({ navigation }) => {
         </View>
 
         <View style={styles.attackContainer}>
-          <Text>Attacks & SpellCasting</Text>
+          <Text style={{ color: Colors.font }}>Attacks & SpellCasting</Text>
           <View style={styles.attSpellContainer}>
             <ScrollView>
               <Grid>
                 <Col>
-                  <Text>Name</Text>
+                  <Text style={{ color: Colors.font }}>Name</Text>
                 </Col>
 
                 <Col>
-                  <Text>ATK Bonus</Text>
+                  <Text style={{ color: Colors.font }}>ATK Bonus</Text>
                 </Col>
 
                 <Col>
-                  <Text>Damage/Type</Text>
+                  <Text style={{ color: Colors.font }}>Damage/Type</Text>
                 </Col>
               </Grid>
 
@@ -95,12 +95,12 @@ const SkillsScreen = ({ navigation }) => {
 
           <View style={styles.buttonContainer}>
             <View style={styles.styledButton}>
-              <Text style={{ color: 'white', fontSize: 13 }}>
+              <Text style={{ color: Colors.font, fontSize: 13 }}>
                 Create Character
               </Text>
             </View>
             <View style={styles.styledButton}>
-              <Text onPress={setRowsToRender} style={{ color: 'white' }}>
+              <Text onPress={setRowsToRender} style={{ color: Colors.font }}>
                 Add Attack
               </Text>
             </View>
@@ -119,7 +119,7 @@ const SkillsScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    backgroundColor: Colors.backGround,
+    backgroundColor: Colors.background,
     width: '100%'
   },
   container: {
@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
     marginTop: 15
   },
   attSpellContainer: {
-    borderColor: Colors.underLine,
+    borderColor: Colors.primary,
     borderWidth: 1,
     height: 200,
     width: 395,
@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
     height: 40,
     width: 100,
     borderRadius: 10,
-    backgroundColor: Colors.underLine,
+    backgroundColor: Colors.primary,
     justifyContent: 'center',
     alignItems: 'center'
   },

@@ -12,6 +12,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { setSelectCharacter } from '../actions/characters';
 
+import Colors from '../Colors';
+
 const CharacterList = ({
   chars = [],
   setSelectCharacter,
@@ -57,7 +59,12 @@ const CharacterList = ({
       return (
         <View style={styles.list} key={i}>
           <View style={styles.innerContainer}>
-            <Text onPress={handleSelectCharacter(char)}>{char}</Text>
+            <Text
+              style={{ color: Colors.font }}
+              onPress={handleSelectCharacter(char)}
+            >
+              {char}
+            </Text>
           </View>
 
           <Ionicons

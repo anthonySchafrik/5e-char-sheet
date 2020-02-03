@@ -44,7 +44,7 @@ class Spell extends Component {
       <View style={StyleSheet.container}>
         <View style={styles.rowContainer}>
           <View>
-            <Text>Spellcasting class</Text>
+            <Text style={{ color: Colors.font }}>Spellcasting class</Text>
             <TextInput
               style={styles.styledInput}
               onChangeText={text => stateUpdater('spellClass', text)}
@@ -52,7 +52,7 @@ class Spell extends Component {
             />
           </View>
           <View>
-            <Text>Spellingcasting Ability</Text>
+            <Text style={{ color: Colors.font }}>Spellingcasting Ability</Text>
             <TextInput
               style={styles.styledInput}
               onChangeText={text => stateUpdater('ability', text)}
@@ -63,7 +63,7 @@ class Spell extends Component {
 
         <View style={styles.rowContainer}>
           <View>
-            <Text>Spell Save DC</Text>
+            <Text style={{ color: Colors.font }}>Spell Save DC</Text>
             <TextInput
               style={styles.styledInput}
               onChangeText={text => stateUpdater('save', text)}
@@ -71,7 +71,7 @@ class Spell extends Component {
             />
           </View>
           <View>
-            <Text>Spell Attack Bonus</Text>
+            <Text style={{ color: Colors.font }}>Spell Attack Bonus</Text>
             <TextInput
               style={styles.styledInput}
               onChangeText={text => stateUpdater('bonus', text)}
@@ -81,7 +81,7 @@ class Spell extends Component {
         </View>
 
         <View style={styles.spellDescription}>
-          <Text>Spell Description</Text>
+          <Text style={{ color: Colors.font }}>Spell Description</Text>
           <TextInput
             style={{ ...styles.styledInput, borderWidth: 1 }}
             multiline={true}
@@ -104,8 +104,9 @@ const styles = StyleSheet.create({
     marginVertical: 5
   },
   styledInput: {
-    borderColor: Colors.underLine,
-    borderBottomWidth: 1
+    borderColor: Colors.primary,
+    borderBottomWidth: 1,
+    color: Colors.font
   },
   spellDescription: {
     width: '85%',
