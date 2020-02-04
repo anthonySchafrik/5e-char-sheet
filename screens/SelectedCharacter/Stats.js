@@ -20,7 +20,7 @@ import Menu from '../../components/Menu';
 import Colors from '../../Colors';
 import store from '../../store';
 
-const statReducer = (state, action) => {
+const combatReducer = (state, action) => {
   const { type, payload } = action;
   const { key, value } = payload;
 
@@ -37,19 +37,74 @@ const statReducer = (state, action) => {
   }
 };
 
-const Stats = ({ stat, updateSelectedCharacter, navigation }) => {
-  const [updatedStats, statsDispatch] = useReducer(statReducer, stat);
+// const statsReducer = (state, action) => {
+//   const { type, payload } = action;
+//   const { key, value } = payload;
+//   const { stats, savingThrows } = state;
+
+//   switch (type) {
+//     case 'stat':
+//       return {
+//         ...state,
+//         stats: {
+//           ...stats,
+//           [key]: {
+//             ...stats[key],
+//             stat: value
+//           }
+//         }
+//       };
+//     case 'statMult':
+//       return {
+//         ...state,
+//         stats: {
+//           ...stats,
+//           [key]: {
+//             ...stats[key],
+//             mult: value
+//           }
+//         }
+//       };
+//     case 'saving':
+//       return {
+//         ...state,
+//         savingThrows: {
+//           ...savingThrows,
+//           [key]: {
+//             ...savingThrows[key],
+//             mult: value
+//           }
+//         }
+//       };
+//     default:
+//       throw new Error();
+//   }
+// };
+
+const Stats = ({
+  combatSkills,
+  stats,
+  savingThrows,
+  updateSelectedCharacter,
+  navigation
+}) => {
+  const [updatedCombatSkills, combatDispatch] = useReducer(
+    combatReducer,
+    combatSkills
+  );
+  // const [updateStats, statsDispatch] = useReducer(statsReducer, {
+  //   stats,
+  //   savingThrows
+  // });
 
   const {
-    stats,
     proficiency,
-    savingThrows,
     armorClass,
     initiative,
     speed,
     hp,
     hd
-  } = updatedStats;
+  } = updatedCombatSkills;
 
   const handleUpdateCharacter = (key, value) => () =>
     updateSelectedCharacter({ key, value });
@@ -58,10 +113,9 @@ const Stats = ({ stat, updateSelectedCharacter, navigation }) => {
     return async () => {
       const { selectedCharacter } = store.getState().character;
       const { 'character name': name } = selectedCharacter;
-
+      console.log('unMount stats', selectedCharacter);
       try {
-        console.log('ummounted', selectedCharacter);
-        // await AsyncStorage.setItem(name, JSON.stringify(test));
+        // await AsyncStorage.setItem(name, JSON.stringify(selectedCharacter));
       } catch (error) {
         console.log(error);
       }
@@ -80,7 +134,7 @@ const Stats = ({ stat, updateSelectedCharacter, navigation }) => {
             <TextInput
               value={hp}
               onChangeText={text =>
-                statsDispatch({
+                combatDispatch({
                   type: 'update',
                   payload: { key: 'hp', value: text }
                 })
@@ -88,13 +142,14 @@ const Stats = ({ stat, updateSelectedCharacter, navigation }) => {
               onEndEditing={handleUpdateCharacter('hit points maximum', hp)}
             />
           </View>
+
           <View style={styles.squContainer}>
             <View style={styles.row}>
               <Text>Initiative</Text>
               <TextInput
                 value={initiative}
                 onChangeText={text =>
-                  statsDispatch({
+                  combatDispatch({
                     type: 'update',
                     payload: { key: 'initiative', value: text }
                   })
@@ -108,7 +163,7 @@ const Stats = ({ stat, updateSelectedCharacter, navigation }) => {
               <TextInput
                 value={speed}
                 onChangeText={text =>
-                  statsDispatch({
+                  combatDispatch({
                     type: 'update',
                     payload: { key: 'speed', value: text }
                   })
@@ -117,6 +172,7 @@ const Stats = ({ stat, updateSelectedCharacter, navigation }) => {
               />
             </View>
           </View>
+
           <View style={styles.midContainer}>
             <View style={styles.centered}>
               <Text style={styles.styledText}>Hit Dice</Text>
@@ -124,7 +180,7 @@ const Stats = ({ stat, updateSelectedCharacter, navigation }) => {
                 value={hd}
                 style={styles.styledText}
                 onChangeText={text =>
-                  statsDispatch({
+                  combatDispatch({
                     type: 'update',
                     payload: { key: 'hd', value: text }
                   })
@@ -149,7 +205,7 @@ const Stats = ({ stat, updateSelectedCharacter, navigation }) => {
                 }}
                 value={armorClass}
                 onChangeText={text =>
-                  statsDispatch({
+                  combatDispatch({
                     type: 'update',
                     payload: { key: 'armorClass', value: text }
                   })
@@ -164,7 +220,7 @@ const Stats = ({ stat, updateSelectedCharacter, navigation }) => {
                 value={proficiency}
                 style={styles.styledText}
                 onChangeText={text =>
-                  statsDispatch({
+                  combatDispatch({
                     type: 'update',
                     payload: { key: 'proficiency', value: text }
                   })
@@ -176,6 +232,7 @@ const Stats = ({ stat, updateSelectedCharacter, navigation }) => {
               />
             </View>
           </View>
+
           <View style={styles.statContainer}>
             <View style={styles.row}>
               <StatOval
@@ -248,17 +305,17 @@ const mapStateToProps = state => {
   } = state.character.selectedCharacter;
 
   return {
-    stat: {
-      stats,
+    combatSkills: {
       proficiency,
       armorClass,
       initiative,
       speed,
       hp,
       hd,
-      name,
-      savingThrows
-    }
+      name
+    },
+    stats,
+    savingThrows
   };
 };
 

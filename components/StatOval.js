@@ -6,103 +6,33 @@ import { bindActionCreators } from 'redux';
 import { updateSelectedCharacter } from '../actions/characters';
 import Colors from '../Colors';
 
-const statReducer = (state, action) => {
-  const { type, payload } = action;
-  const { key, value } = payload;
-  const { stats, savingThrows } = state;
-
-  switch (type) {
-    case 'stat':
-      return {
-        ...state,
-        stats: {
-          ...stats,
-          [key]: {
-            ...stats[key],
-            stat: value
-          }
-        }
-      };
-    case 'statMult':
-      return {
-        ...state,
-        stats: {
-          ...stats,
-          [key]: {
-            ...stats[key],
-            mult: value
-          }
-        }
-      };
-    case 'saving':
-      return {
-        ...state,
-        savingThrows: {
-          ...savingThrows,
-          [key]: {
-            ...savingThrows[key],
-            mult: value
-          }
-        }
-      };
-    default:
-      throw new Error();
-  }
-};
-
-const StatOval = ({ stat, stats, savingThrows }) => {
+const StatOval = ({
+  stat,
+  updateSelectedCharacter,
+  score,
+  multiplier,
+  save,
+  proficient
+}) => {
   const title = stat.charAt(0).toUpperCase() + stat.slice(1);
 
-  const [updatedStats, statsDispatch] = useReducer(statReducer, {
-    stats,
-    savingThrows
-  });
-
-  const { stat: statKey, mult: statMult } = updatedStats.stats[stat];
-  const { mult: save } = updatedStats.savingThrows[stat];
-
-  // console.log(updatedStats);
   return (
     <View style={styles.container}>
       <Text style={styles.styledText}>{title}</Text>
       <View style={styles.statRow}>
         <View style={styles.center}>
           <Text>Score</Text>
-          <TextInput
-            onChangeText={text =>
-              statsDispatch({
-                type: 'stat',
-                payload: { key: stat, value: text }
-              })
-            }
-            value={statKey}
-          />
+          <TextInput value={score} />
         </View>
 
         <View style={styles.center}>
           <Text>Multiplier</Text>
-          <TextInput
-            onChangeText={text =>
-              statsDispatch({
-                type: 'statMult',
-                payload: { key: stat, value: text }
-              })
-            }
-            value={statMult}
-          />
+          <TextInput value={multiplier} />
         </View>
 
         <View style={styles.center}>
           <Text>Save</Text>
-          <TextInput
-            onChangeText={text =>
-              statsDispatch({
-                type: 'saving',
-                payload: { key: stat, value: text }
-              })
-            }
-            value={save}
-          />
+          <TextInput value={save} />
         </View>
       </View>
     </View>

@@ -3,9 +3,10 @@ import { View, Text, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import Menu from '../../components/Menu';
 import Colors from '../../Colors';
 
-const Equipment = ({ treasure, equipment }) => {
+const Equipment = ({ treasure, equipment, navigation }) => {
   useEffect(() => {
     return async () => {
       try {
@@ -19,6 +20,7 @@ const Equipment = ({ treasure, equipment }) => {
 
   return (
     <View style={styles.screen}>
+      <Menu navigation={navigation} />
       <Text>{JSON.stringify({ treasure })}</Text>
       <Text>{JSON.stringify({ equipment })}</Text>
     </View>
