@@ -21,7 +21,7 @@ const SkillRow = ({ text, updateCreateCharacter, subText, skills }) => {
       text: 'skills',
       update: {
         ...skills,
-        [key]: { muli: updateMult, proficient }
+        [key]: { mult: updateMult, proficient }
       }
     });
   };

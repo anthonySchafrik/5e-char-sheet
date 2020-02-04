@@ -30,7 +30,7 @@ const statReducer = (state, action) => {
           ...stats,
           [key]: {
             ...stats[key],
-            muli: value
+            mult: value
           }
         }
       };
@@ -41,7 +41,7 @@ const statReducer = (state, action) => {
           ...savingThrows,
           [key]: {
             ...savingThrows[key],
-            muli: value
+            mult: value
           }
         }
       };
@@ -58,10 +58,10 @@ const StatOval = ({ stat, stats, savingThrows }) => {
     savingThrows
   });
 
-  const { stat: statKey, muli: statMult } = updatedStats.stats[stat];
-  const { muli: save } = updatedStats.savingThrows[stat];
+  const { stat: statKey, mult: statMult } = updatedStats.stats[stat];
+  const { mult: save } = updatedStats.savingThrows[stat];
 
-  console.log(updatedStats);
+  // console.log(updatedStats);
   return (
     <View style={styles.container}>
       <Text style={styles.styledText}>{title}</Text>

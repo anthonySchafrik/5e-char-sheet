@@ -54,19 +54,19 @@ const Stats = ({ stat, updateSelectedCharacter, navigation }) => {
   const handleUpdateCharacter = (key, value) => () =>
     updateSelectedCharacter({ key, value });
 
-  // useEffect(() => {
-  //   return async () => {
-  //     const { selectedCharacter } = store.getState().character;
-  //     const { 'character name': name } = selectedCharacter;
+  useEffect(() => {
+    return async () => {
+      const { selectedCharacter } = store.getState().character;
+      const { 'character name': name } = selectedCharacter;
 
-  //     try {
-  //       console.log('ummounted', selectedCharacter);
-  //       // await AsyncStorage.setItem(name, JSON.stringify(selectedCharacter));
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
-  // }, []);
+      try {
+        console.log('ummounted', selectedCharacter);
+        // await AsyncStorage.setItem(name, JSON.stringify(test));
+      } catch (error) {
+        console.log(error);
+      }
+    };
+  }, []);
 
   return (
     <KeyboardAvoidingView behavior="padding" style={styles.screen}>
@@ -88,7 +88,6 @@ const Stats = ({ stat, updateSelectedCharacter, navigation }) => {
               onEndEditing={handleUpdateCharacter('hit points maximum', hp)}
             />
           </View>
-
           <View style={styles.squContainer}>
             <View style={styles.row}>
               <Text>Initiative</Text>
@@ -118,7 +117,6 @@ const Stats = ({ stat, updateSelectedCharacter, navigation }) => {
               />
             </View>
           </View>
-
           <View style={styles.midContainer}>
             <View style={styles.centered}>
               <Text style={styles.styledText}>Hit Dice</Text>
@@ -178,21 +176,20 @@ const Stats = ({ stat, updateSelectedCharacter, navigation }) => {
               />
             </View>
           </View>
-
           <View style={styles.statContainer}>
             <View style={styles.row}>
               <StatOval
                 stat="strength"
                 score={stats.strength.stat}
-                multiplier={stats.strength.muli}
-                save={savingThrows.strength.muli}
+                multiplier={stats.strength.mult}
+                save={savingThrows.strength.mult}
                 proficient={savingThrows.strength.proficient}
               />
               <StatOval
                 stat="dexterity"
                 score={stats.dexterity.stat}
-                multiplier={stats.dexterity.muli}
-                save={savingThrows.dexterity.muli}
+                multiplier={stats.dexterity.mult}
+                save={savingThrows.dexterity.mult}
                 proficient={savingThrows.dexterity.proficient}
               />
             </View>
@@ -201,15 +198,15 @@ const Stats = ({ stat, updateSelectedCharacter, navigation }) => {
               <StatOval
                 stat="intelligence"
                 score={stats.intelligence.stat}
-                multiplier={stats.intelligence.muli}
-                save={savingThrows.intelligence.muli}
+                multiplier={stats.intelligence.mult}
+                save={savingThrows.intelligence.mult}
                 proficient={savingThrows.intelligence.proficient}
               />
               <StatOval
                 stat="charisma"
                 score={stats.charisma.stat}
-                multiplier={stats.charisma.muli}
-                save={savingThrows.charisma.muli}
+                multiplier={stats.charisma.mult}
+                save={savingThrows.charisma.mult}
                 proficient={savingThrows.charisma.proficient}
               />
             </View>
@@ -218,15 +215,15 @@ const Stats = ({ stat, updateSelectedCharacter, navigation }) => {
               <StatOval
                 stat="wisdom"
                 score={stats.wisdom.stat}
-                multiplier={stats.wisdom.muli}
-                save={savingThrows.wisdom.muli}
+                multiplier={stats.wisdom.mult}
+                save={savingThrows.wisdom.mult}
                 proficient={savingThrows.wisdom.proficient}
               />
               <StatOval
                 stat="constitution"
                 score={stats.constitution.stat}
-                multiplier={stats.constitution.muli}
-                save={savingThrows.constitution.muli}
+                multiplier={stats.constitution.mult}
+                save={savingThrows.constitution.mult}
                 proficient={savingThrows.constitution.proficient}
               />
             </View>

@@ -18,7 +18,7 @@ const SavingThrowRow = ({ text, updateCreateCharacter, savingThrows }) => {
       text: 'savingThrows',
       update: {
         ...savingThrows,
-        [key]: { muli: updateMult, proficient }
+        [key]: { mult: updateMult, proficient }
       }
     });
   };

@@ -15,7 +15,7 @@ const StatBox = ({ text, updateCreateCharacter, stats }) => {
 
     updateCreateCharacter({
       text: 'stats',
-      update: { ...stats, [key]: { muli: updateMult, stat: updateStat } }
+      update: { ...stats, [key]: { mult: updateMult, stat: updateStat } }
     });
   };
 
