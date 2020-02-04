@@ -37,49 +37,49 @@ const combatReducer = (state, action) => {
   }
 };
 
-// const statsReducer = (state, action) => {
-//   const { type, payload } = action;
-//   const { key, value } = payload;
-//   const { stats, savingThrows } = state;
+const statsReducer = (state, action) => {
+  const { type, payload } = action;
+  const { key, value } = payload;
+  const { stats, savingThrows } = state;
 
-//   switch (type) {
-//     case 'stat':
-//       return {
-//         ...state,
-//         stats: {
-//           ...stats,
-//           [key]: {
-//             ...stats[key],
-//             stat: value
-//           }
-//         }
-//       };
-//     case 'statMult':
-//       return {
-//         ...state,
-//         stats: {
-//           ...stats,
-//           [key]: {
-//             ...stats[key],
-//             mult: value
-//           }
-//         }
-//       };
-//     case 'saving':
-//       return {
-//         ...state,
-//         savingThrows: {
-//           ...savingThrows,
-//           [key]: {
-//             ...savingThrows[key],
-//             mult: value
-//           }
-//         }
-//       };
-//     default:
-//       throw new Error();
-//   }
-// };
+  switch (type) {
+    case 'stat':
+      return {
+        ...state,
+        stats: {
+          ...stats,
+          [key]: {
+            ...stats[key],
+            stat: value
+          }
+        }
+      };
+    case 'statMult':
+      return {
+        ...state,
+        stats: {
+          ...stats,
+          [key]: {
+            ...stats[key],
+            mult: value
+          }
+        }
+      };
+    case 'saving':
+      return {
+        ...state,
+        savingThrows: {
+          ...savingThrows,
+          [key]: {
+            ...savingThrows[key],
+            mult: value
+          }
+        }
+      };
+    default:
+      throw new Error();
+  }
+};
 
 const Stats = ({
   combatSkills,
@@ -92,10 +92,10 @@ const Stats = ({
     combatReducer,
     combatSkills
   );
-  // const [updateStats, statsDispatch] = useReducer(statsReducer, {
-  //   stats,
-  //   savingThrows
-  // });
+  const [updateStats, statsDispatch] = useReducer(statsReducer, {
+    stats,
+    savingThrows
+  });
 
   const {
     proficiency,
@@ -106,6 +106,11 @@ const Stats = ({
     hd
   } = updatedCombatSkills;
 
+  const {
+    stats: updatedStats,
+    savingThrows: updatedSavingThrows
+  } = updateStats;
+
   const handleUpdateCharacter = (key, value) => () =>
     updateSelectedCharacter({ key, value });
 
@@ -113,7 +118,7 @@ const Stats = ({
     return async () => {
       const { selectedCharacter } = store.getState().character;
       const { 'character name': name } = selectedCharacter;
-      console.log('unMount stats', selectedCharacter);
+      console.log('unMount', selectedCharacter);
       try {
         // await AsyncStorage.setItem(name, JSON.stringify(selectedCharacter));
       } catch (error) {
@@ -121,6 +126,17 @@ const Stats = ({
       }
     };
   }, []);
+
+  useEffect(() => {
+    updateSelectedCharacter({ key: 'stats', value: updatedStats });
+  }, [updateStats]);
+
+  useEffect(() => {
+    updateSelectedCharacter({
+      key: 'savingThrows',
+      value: updatedSavingThrows
+    });
+  }, [updatedSavingThrows]);
 
   return (
     <KeyboardAvoidingView behavior="padding" style={styles.screen}>
@@ -237,51 +253,63 @@ const Stats = ({
             <View style={styles.row}>
               <StatOval
                 stat="strength"
-                score={stats.strength.stat}
-                multiplier={stats.strength.mult}
-                save={savingThrows.strength.mult}
-                proficient={savingThrows.strength.proficient}
+                score={updatedStats.strength.stat}
+                multiplier={updatedStats.strength.mult}
+                save={updatedSavingThrows.strength.mult}
+                proficient={updatedSavingThrows.strength.proficient}
+                statsDispatch={statsDispatch}
+                updateStats={updateStats}
               />
               <StatOval
                 stat="dexterity"
-                score={stats.dexterity.stat}
-                multiplier={stats.dexterity.mult}
-                save={savingThrows.dexterity.mult}
-                proficient={savingThrows.dexterity.proficient}
+                score={updatedStats.dexterity.stat}
+                multiplier={updatedStats.dexterity.mult}
+                save={updatedSavingThrows.dexterity.mult}
+                proficient={updatedSavingThrows.dexterity.proficient}
+                statsDispatch={statsDispatch}
+                updateStats={updateStats}
               />
             </View>
 
             <View style={styles.row}>
               <StatOval
                 stat="intelligence"
-                score={stats.intelligence.stat}
-                multiplier={stats.intelligence.mult}
-                save={savingThrows.intelligence.mult}
-                proficient={savingThrows.intelligence.proficient}
+                score={updatedStats.intelligence.stat}
+                multiplier={updatedStats.intelligence.mult}
+                save={updatedSavingThrows.intelligence.mult}
+                proficient={updatedSavingThrows.intelligence.proficient}
+                statsDispatch={statsDispatch}
+                updateStats={updateStats}
               />
               <StatOval
                 stat="charisma"
-                score={stats.charisma.stat}
-                multiplier={stats.charisma.mult}
-                save={savingThrows.charisma.mult}
-                proficient={savingThrows.charisma.proficient}
+                score={updatedStats.charisma.stat}
+                multiplier={updatedStats.charisma.mult}
+                save={updatedSavingThrows.charisma.mult}
+                proficient={updatedSavingThrows.charisma.proficient}
+                statsDispatch={statsDispatch}
+                updateStats={updateStats}
               />
             </View>
 
             <View style={styles.row}>
               <StatOval
                 stat="wisdom"
-                score={stats.wisdom.stat}
-                multiplier={stats.wisdom.mult}
-                save={savingThrows.wisdom.mult}
-                proficient={savingThrows.wisdom.proficient}
+                score={updatedStats.wisdom.stat}
+                multiplier={updatedStats.wisdom.mult}
+                save={updatedSavingThrows.wisdom.mult}
+                proficient={updatedSavingThrows.wisdom.proficient}
+                statsDispatch={statsDispatch}
+                updateStats={updateStats}
               />
               <StatOval
                 stat="constitution"
-                score={stats.constitution.stat}
-                multiplier={stats.constitution.mult}
-                save={savingThrows.constitution.mult}
-                proficient={savingThrows.constitution.proficient}
+                score={updatedStats.constitution.stat}
+                multiplier={updatedStats.constitution.mult}
+                save={updatedSavingThrows.constitution.mult}
+                proficient={updatedSavingThrows.constitution.proficient}
+                statsDispatch={statsDispatch}
+                updateStats={updateStats}
               />
             </View>
           </View>
