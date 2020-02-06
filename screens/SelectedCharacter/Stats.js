@@ -118,9 +118,9 @@ const Stats = ({
     return async () => {
       const { selectedCharacter } = store.getState().character;
       const { 'character name': name } = selectedCharacter;
-      console.log('unMount', selectedCharacter);
+
       try {
-        // await AsyncStorage.setItem(name, JSON.stringify(selectedCharacter));
+        await AsyncStorage.setItem(name, JSON.stringify(selectedCharacter));
       } catch (error) {
         console.log(error);
       }
