@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
   input: {
     borderBottomColor: Colors.secondary,
     borderBottomWidth: 1,
-    color: Colors.secondary,
+    color: Colors.font,
     width: '45%'
   }
 });

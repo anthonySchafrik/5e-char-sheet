@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
   checkedCircle: {
     height: 25,
     width: 25,
-    borderColor: '#323232',
+    borderColor: Colors.primary,
     borderWidth: 1,
     borderRadius: 25
   },

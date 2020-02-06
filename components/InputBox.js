@@ -21,7 +21,7 @@ const InputBox = ({ text, updateCreateCharacter, style }) => {
             {
               ...styles.styledTextInput,
               ...style,
-              paddingLeft: update.length > 2 ? 100 : 0
+              paddingLeft: update.length > 2 ? 10 : 0
             }
           ]}
           placeholder="stat"

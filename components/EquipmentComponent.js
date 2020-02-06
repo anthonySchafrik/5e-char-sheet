@@ -30,7 +30,7 @@ class EquipmentComponent extends Component {
         <View key={i} style={styles.row}>
           <Text style={{ color: Colors.font }}>{x}</Text>
           <TextInput
-            style={styles.rowInput}
+            style={styles.styledTextInput}
             multiline={true}
             onChangeText={text => stateUpdater(x, text)}
             onEndEditing={handleCharacterUpdate}
@@ -58,7 +58,7 @@ class EquipmentComponent extends Component {
           <View style={styles.inputContainer}>
             <TextInput
               onChangeText={t => stateUpdater('text', t)}
-              style={styles.textInput}
+              style={styles.styledTextInput}
               multiline={true}
               onEndEditing={handleCharacterUpdate}
             />
@@ -82,10 +82,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between'
   },
-  rowInput: {
-    borderColor: Colors.primary,
-    borderBottomWidth: 1
-  },
   rowContainer: {
     paddingBottom: 5,
     alignItems: 'center'
@@ -99,9 +95,10 @@ const styles = StyleSheet.create({
   inputContainer: {
     width: '75%'
   },
-  textInput: {
+  styledTextInput: {
     borderColor: Colors.primary,
-    borderBottomWidth: 1
+    borderBottomWidth: 1,
+    color: Colors.font
   }
 });
 
