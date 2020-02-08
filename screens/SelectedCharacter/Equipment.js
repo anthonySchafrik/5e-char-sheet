@@ -80,9 +80,14 @@ const Equipment = ({
         </ScrollView>
       </View>
 
-      <ScrollView>
-        <View style={{ ...styles.row, ...styles.rowContainer }}>
-          <View>
+      <ScrollView style={{ width: '100%' }}>
+        <View
+          style={{
+            ...styles.row,
+            ...styles.rowContainer
+          }}
+        >
+          <View style={{}}>
             <View style={styles.row}>
               <Text>Cp</Text>
               <TextInput value={cp} style={styles.rowInput} />
@@ -168,7 +173,8 @@ const styles = StyleSheet.create({
     borderColor: Colors.secondary,
     borderWidth: 1,
     width: '95%',
-    height: 160
+    height: 160,
+    alignSelf: 'center'
   },
   styledMenu: {
     alignSelf: 'flex-start',
