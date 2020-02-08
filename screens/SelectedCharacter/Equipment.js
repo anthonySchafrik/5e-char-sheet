@@ -5,7 +5,7 @@ import {
   StyleSheet,
   TextInput,
   ScrollView,
-  KeyboardAvoidingView
+  AsyncStorage
 } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -13,7 +13,9 @@ import { bindActionCreators } from 'redux';
 import { updateSelectedCharacter } from '../../actions/characters';
 
 import Menu from '../../components/Menu';
+
 import Colors from '../../Colors';
+import store from '../../store';
 
 const equipmentReducer = (state, action) => {
   const { type, payload } = action;
@@ -47,14 +49,19 @@ const Equipment = ({
 
   useEffect(() => {
     return async () => {
+      const { selectedCharacter } = store.getState().character;
+      const { 'character name': name } = selectedCharacter;
+
       try {
-        console.log('ummounted Equipment');
-        // await AsyncStorage.setItem(name, JSON.stringify(selectedCharacter));
+        await AsyncStorage.setItem(name, JSON.stringify(selectedCharacter));
       } catch (error) {
         console.log(error);
       }
     };
   }, []);
+
+  const handleUpdateCharacter = (key, value) => () =>
+    updateSelectedCharacter({ key, value });
 
   return (
     <View style={styles.screen}>
@@ -70,12 +77,7 @@ const Equipment = ({
             style={styles.styledTextField}
             value={updatedTreasure}
             onChangeText={text => handleUpdatedTreasure(text)}
-            onEndEditing={() =>
-              updateSelectedCharacter({
-                key: 'treasure',
-                value: updatedTreasure
-              })
-            }
+            onEndEditing={handleUpdateCharacter('treasure', updatedTreasure)}
           />
         </ScrollView>
       </View>
@@ -87,35 +89,107 @@ const Equipment = ({
             ...styles.rowContainer
           }}
         >
-          <View style={{}}>
+          <View>
             <View style={styles.row}>
               <Text>Cp</Text>
-              <TextInput value={cp} style={styles.rowInput} />
+              <TextInput
+                onChangeText={text =>
+                  equipmentDispatch({
+                    type: 'update',
+                    payload: { key: 'cp', value: text }
+                  })
+                }
+                onEndEditing={handleUpdateCharacter(
+                  'equipment',
+                  updatedEquipment
+                )}
+                value={cp}
+                style={styles.rowInput}
+              />
             </View>
 
             <View style={styles.row}>
               <Text>Sp</Text>
-              <TextInput value={sp} style={styles.rowInput} />
+              <TextInput
+                onChangeText={text =>
+                  equipmentDispatch({
+                    type: 'update',
+                    payload: { key: 'sp', value: text }
+                  })
+                }
+                onEndEditing={handleUpdateCharacter(
+                  'equipment',
+                  updatedEquipment
+                )}
+                value={sp}
+                style={styles.rowInput}
+              />
             </View>
 
             <View style={styles.row}>
               <Text>Ep</Text>
-              <TextInput value={ep} style={styles.rowInput} />
+              <TextInput
+                onChangeText={text =>
+                  equipmentDispatch({
+                    type: 'update',
+                    payload: { key: 'ep', value: text }
+                  })
+                }
+                onEndEditing={handleUpdateCharacter(
+                  'equipment',
+                  updatedEquipment
+                )}
+                value={ep}
+                style={styles.rowInput}
+              />
             </View>
 
             <View style={styles.row}>
               <Text>Gp</Text>
-              <TextInput value={gp} style={styles.rowInput} />
+              <TextInput
+                onChangeText={text =>
+                  equipmentDispatch({
+                    type: 'update',
+                    payload: { key: 'gp', value: text }
+                  })
+                }
+                onEndEditing={handleUpdateCharacter(
+                  'equipment',
+                  updatedEquipment
+                )}
+                value={gp}
+                style={styles.rowInput}
+              />
             </View>
 
             <View style={styles.row}>
               <Text>Pp</Text>
-              <TextInput value={pp} style={styles.rowInput} />
+              <TextInput
+                onChangeText={text =>
+                  equipmentDispatch({
+                    type: 'update',
+                    payload: { key: 'pp', value: text }
+                  })
+                }
+                onEndEditing={handleUpdateCharacter(
+                  'equipment',
+                  updatedEquipment
+                )}
+                value={pp}
+                style={styles.rowInput}
+              />
             </View>
           </View>
           <TextInput
             value={text}
             multiline={true}
+            onChangeText={text =>
+              equipmentDispatch({
+                type: 'update',
+                payload: { key: 'text', value: text }
+              })
+            }
+            onEndEditing={handleUpdateCharacter('equipment', updatedEquipment)}
             style={styles.equipmentTextField}
           />
         </View>
