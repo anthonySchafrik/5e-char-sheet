@@ -1,11 +1,15 @@
 import React, { useEffect } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Button } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import { updateSelectedCharacter } from '../../actions/characters';
+
+import Menu from '../../components/Menu';
+
 import Colors from '../../Colors';
 
-const Attacks = ({ attacks, spells }) => {
+const Attacks = ({ attacks, spells, updateSelectedCharacter, navigation }) => {
   useEffect(() => {
     return async () => {
       try {
@@ -16,10 +20,25 @@ const Attacks = ({ attacks, spells }) => {
       }
     };
   }, []);
+
   return (
     <View style={styles.screen}>
-      <Text>{JSON.stringify({ attacks })}</Text>
-      <Text>{JSON.stringify({ spells })}</Text>
+      <View style={styles.styledMenu}>
+        <Menu navigation={navigation} />
+      </View>
+
+      <View style={styles.attackContainer}>
+        <Text>attack contaiiner</Text>
+      </View>
+
+      <View style={styles.attackContainer}>
+        <Text>spell contaiiner</Text>
+      </View>
+
+      <View style={styles.buttonContainer}>
+        <Button title="add spell" />
+        <Button title="add attack" />
+      </View>
     </View>
   );
 };
@@ -30,14 +49,27 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProp = dispatch => {
-  return bindActionCreators({}, dispatch);
+  return bindActionCreators({ updateSelectedCharacter }, dispatch);
 };
 
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    backgroundColor: Colors.background,
-    paddingTop: 30,
+    backgroundColor: Colors.background
+  },
+  styledMenu: {
+    alignSelf: 'flex-start',
+    paddingLeft: 10,
+    paddingTop: 30
+  },
+  attackContainer: {
+    borderColor: Colors.primary,
+    borderWidth: 1,
+    marginVertical: 15
+  },
+  // spellContainer: { borderColor: Colors.primary, borderWidth: 1 },
+  buttonContainer: {
+    flexDirection: 'row',
     justifyContent: 'space-around'
   }
 });
