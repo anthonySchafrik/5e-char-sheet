@@ -13,7 +13,7 @@ const LandingScreen = props => {
       <Text style={styles.text}>5th Edition</Text>
       <Image source={require('../assets/logo.png')} resizeMode="cover" />
 
-      <TouchableNativeFeedback>
+      {/* <TouchableNativeFeedback> */}
         <Text
           style={styles.text}
           onPress={() => {
@@ -22,7 +22,7 @@ const LandingScreen = props => {
         >
           Character Selection
         </Text>
-      </TouchableNativeFeedback>
+      {/* </TouchableNativeFeedback> */}
     </View>
   );
 };
