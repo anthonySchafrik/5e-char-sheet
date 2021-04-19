@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import React, { useEffect } from "react";
+import { View, Text, StyleSheet } from "react-native";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 
-import Colors from '../../Colors';
+import Colors from "../../Colors";
 
 const Character = ({
   name,
@@ -18,12 +18,11 @@ const Character = ({
   bonds,
   flaws,
   ideals,
-  allies
+  allies,
 }) => {
   useEffect(() => {
     return async () => {
       try {
-        console.log('ummounted Character');
         // await AsyncStorage.setItem(name, JSON.stringify(selectedCharacter));
       } catch (error) {
         console.log(error);
@@ -50,21 +49,21 @@ const Character = ({
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   const {
-    'character name': name,
+    "character name": name,
     class: playerClass,
     age,
     weight,
     eyes,
     skin,
     hair,
-    'character appearance': appearance,
-    'back story': story,
+    "character appearance": appearance,
+    "back story": story,
     bonds,
     flaws,
     ideals,
-    'allies & organizations': allies
+    "allies & organizations": allies,
   } = state.character.selectedCharacter;
 
   return {
@@ -80,11 +79,11 @@ const mapStateToProps = state => {
     bonds,
     flaws,
     ideals,
-    allies
+    allies,
   };
 };
 
-const mapDispatchToProp = dispatch => {
+const mapDispatchToProp = (dispatch) => {
   return bindActionCreators({}, dispatch);
 };
 
@@ -92,8 +91,8 @@ const styles = StyleSheet.create({
   screen: {
     flex: 1,
     backgroundColor: Colors.background,
-    justifyContent: 'space-evenly'
-  }
+    justifyContent: "space-evenly",
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProp)(Character);
